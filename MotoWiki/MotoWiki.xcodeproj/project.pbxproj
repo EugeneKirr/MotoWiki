@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B1DCD3324030299001DF0AB /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DCD3224030299001DF0AB /* Brand.swift */; };
+		0B2D0F6A2400422400815D22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D0F692400422400815D22 /* AppDelegate.swift */; };
+		0B2D0F6C2400422400815D22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D0F6B2400422400815D22 /* SceneDelegate.swift */; };
+		0B2D0F712400422400815D22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D0F6F2400422400815D22 /* Main.storyboard */; };
+		0B2D0F732400422500815D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D0F722400422500815D22 /* Assets.xcassets */; };
+		0B2D0F762400422500815D22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D0F742400422500815D22 /* LaunchScreen.storyboard */; };
+		0B3549492410E37D00780687 /* BikeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3549482410E37D00780687 /* BikeViewerViewController.swift */; };
+		0B35494B2410E47A00780687 /* BikeViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35494A2410E47A00780687 /* BikeViewerCell.swift */; };
+		0B35BF6E240137C900D0495D /* BrandListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35BF6D240137C900D0495D /* BrandListViewController.swift */; };
+		0B35BF70240139D400D0495D /* BrandListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35BF6F240139D400D0495D /* BrandListCell.swift */; };
+		0B35BF722401434700D0495D /* BikeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35BF712401434700D0495D /* BikeListCell.swift */; };
+		0B35BF742401436600D0495D /* BikeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35BF732401436600D0495D /* BikeListViewController.swift */; };
+		0B491AB62402D2F900B321D4 /* EngineTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */; };
+		0B6BDD662407AFAB009D28D3 /* BikeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */; };
+		0B6BDD682407B0B7009D28D3 /* BikeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BDD672407B0B7009D28D3 /* BikeImageCell.swift */; };
+		0B6BDD6A2407B0D2009D28D3 /* BikeEditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BDD692407B0D2009D28D3 /* BikeEditorCell.swift */; };
+		0B8FC0F62402FE1900C98C07 /* PurposeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FC0F52402FE1900C98C07 /* PurposeModel.swift */; };
+		0B8FC0F82403000F00C98C07 /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FC0F72403000F00C98C07 /* Bike.swift */; };
+		0B906F0E242DF0EC00AA9713 /* BrandList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B906F0D242DF0EC00AA9713 /* BrandList.swift */; };
+		0BA3D87F240CEF8B0095B469 /* BrandEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */; };
+		0BA3D885240CF0E40095B469 /* BrandEditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3D884240CF0E40095B469 /* BrandEditorCell.swift */; };
+		0BA3D887240D1F520095B469 /* BrandImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3D886240D1F520095B469 /* BrandImageCell.swift */; };
+		0BED98B6241288DE004D48A1 /* BikeViewerImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BED98B5241288DE004D48A1 /* BikeViewerImageCell.swift */; };
+		0BF80E9E24309F7900DDE4D3 /* BikeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF80E9D24309F7900DDE4D3 /* BikeList.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0B1DCD3224030299001DF0AB /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		0B2D0F662400422400815D22 /* MotoWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B2D0F692400422400815D22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0B2D0F6B2400422400815D22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0B2D0F702400422400815D22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0B2D0F722400422500815D22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0B2D0F752400422500815D22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0B2D0F772400422500815D22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B3549482410E37D00780687 /* BikeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewerViewController.swift; sourceTree = "<group>"; };
+		0B35494A2410E47A00780687 /* BikeViewerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewerCell.swift; sourceTree = "<group>"; };
+		0B35BF6D240137C900D0495D /* BrandListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandListViewController.swift; sourceTree = "<group>"; };
+		0B35BF6F240139D400D0495D /* BrandListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandListCell.swift; sourceTree = "<group>"; };
+		0B35BF712401434700D0495D /* BikeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListCell.swift; sourceTree = "<group>"; };
+		0B35BF732401436600D0495D /* BikeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListViewController.swift; sourceTree = "<group>"; };
+		0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTypeModel.swift; sourceTree = "<group>"; };
+		0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeEditorViewController.swift; sourceTree = "<group>"; };
+		0B6BDD672407B0B7009D28D3 /* BikeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeImageCell.swift; sourceTree = "<group>"; };
+		0B6BDD692407B0D2009D28D3 /* BikeEditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeEditorCell.swift; sourceTree = "<group>"; };
+		0B8FC0F52402FE1900C98C07 /* PurposeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeModel.swift; sourceTree = "<group>"; };
+		0B8FC0F72403000F00C98C07 /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
+		0B906F0D242DF0EC00AA9713 /* BrandList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandList.swift; sourceTree = "<group>"; };
+		0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandEditorViewController.swift; sourceTree = "<group>"; };
+		0BA3D884240CF0E40095B469 /* BrandEditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandEditorCell.swift; sourceTree = "<group>"; };
+		0BA3D886240D1F520095B469 /* BrandImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandImageCell.swift; sourceTree = "<group>"; };
+		0BED98B5241288DE004D48A1 /* BikeViewerImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewerImageCell.swift; sourceTree = "<group>"; };
+		0BF80E9D24309F7900DDE4D3 /* BikeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeList.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0B2D0F632400422400815D22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B161EA024066EB60074105E /* BrandList */ = {
+			isa = PBXGroup;
+			children = (
+				0B7D2714240CE6EE0021F1E9 /* Model */,
+				0B7D2715240CE6F60021F1E9 /* View */,
+				0B7D2716240CE71D0021F1E9 /* Controller */,
+			);
+			path = BrandList;
+			sourceTree = "<group>";
+		};
+		0B161EA1240687C10074105E /* BikeList */ = {
+			isa = PBXGroup;
+			children = (
+				0B51F72D240FCC1C004D434A /* Model */,
+				0B51F72C240FCC15004D434A /* View */,
+				0B51F72B240FCC0D004D434A /* Controller */,
+			);
+			path = BikeList;
+			sourceTree = "<group>";
+		};
+		0B161EA3240688310074105E /* BikeEditor */ = {
+			isa = PBXGroup;
+			children = (
+				0B51F730240FE0DA004D434A /* Model */,
+				0B51F72F240FE0D5004D434A /* View */,
+				0B51F72E240FE0CD004D434A /* Controller */,
+			);
+			path = BikeEditor;
+			sourceTree = "<group>";
+		};
+		0B2D0F5D2400422400815D22 = {
+			isa = PBXGroup;
+			children = (
+				0B2D0F682400422400815D22 /* MotoWiki */,
+				0B2D0F672400422400815D22 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0B2D0F672400422400815D22 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B2D0F662400422400815D22 /* MotoWiki.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0B2D0F682400422400815D22 /* MotoWiki */ = {
+			isa = PBXGroup;
+			children = (
+				0B2D0F692400422400815D22 /* AppDelegate.swift */,
+				0B2D0F6B2400422400815D22 /* SceneDelegate.swift */,
+				0B161EA024066EB60074105E /* BrandList */,
+				0BA3D880240CEF960095B469 /* BrandEditor */,
+				0B161EA1240687C10074105E /* BikeList */,
+				0B161EA3240688310074105E /* BikeEditor */,
+				0B51F732240FE310004D434A /* BikeViewer */,
+				0B2D0F6F2400422400815D22 /* Main.storyboard */,
+				0B2D0F722400422500815D22 /* Assets.xcassets */,
+				0B2D0F742400422500815D22 /* LaunchScreen.storyboard */,
+				0B2D0F772400422500815D22 /* Info.plist */,
+			);
+			path = MotoWiki;
+			sourceTree = "<group>";
+		};
+		0B51F72B240FCC0D004D434A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B35BF732401436600D0495D /* BikeListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0B51F72C240FCC15004D434A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B35BF712401434700D0495D /* BikeListCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B51F72D240FCC1C004D434A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BF80E9D24309F7900DDE4D3 /* BikeList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B51F72E240FE0CD004D434A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0B51F72F240FE0D5004D434A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B6BDD672407B0B7009D28D3 /* BikeImageCell.swift */,
+				0B6BDD692407B0D2009D28D3 /* BikeEditorCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B51F730240FE0DA004D434A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B8FC0F72403000F00C98C07 /* Bike.swift */,
+				0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */,
+				0B8FC0F52402FE1900C98C07 /* PurposeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B51F732240FE310004D434A /* BikeViewer */ = {
+			isa = PBXGroup;
+			children = (
+				0B51F735240FE41A004D434A /* Model */,
+				0B51F734240FE415004D434A /* View */,
+				0B51F733240FE40F004D434A /* Controller */,
+			);
+			path = BikeViewer;
+			sourceTree = "<group>";
+		};
+		0B51F733240FE40F004D434A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B3549482410E37D00780687 /* BikeViewerViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0B51F734240FE415004D434A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BED98B5241288DE004D48A1 /* BikeViewerImageCell.swift */,
+				0B35494A2410E47A00780687 /* BikeViewerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B51F735240FE41A004D434A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B7D2714240CE6EE0021F1E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B906F0D242DF0EC00AA9713 /* BrandList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B7D2715240CE6F60021F1E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B35BF6F240139D400D0495D /* BrandListCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B7D2716240CE71D0021F1E9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B35BF6D240137C900D0495D /* BrandListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0BA3D880240CEF960095B469 /* BrandEditor */ = {
+			isa = PBXGroup;
+			children = (
+				0BA3D881240CEFB10095B469 /* Model */,
+				0BA3D882240CEFB90095B469 /* View */,
+				0BA3D883240CEFBF0095B469 /* Controller */,
+			);
+			path = BrandEditor;
+			sourceTree = "<group>";
+		};
+		0BA3D881240CEFB10095B469 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B1DCD3224030299001DF0AB /* Brand.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BA3D882240CEFB90095B469 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BA3D886240D1F520095B469 /* BrandImageCell.swift */,
+				0BA3D884240CF0E40095B469 /* BrandEditorCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BA3D883240CEFBF0095B469 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0B2D0F652400422400815D22 /* MotoWiki */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B2D0F7A2400422500815D22 /* Build configuration list for PBXNativeTarget "MotoWiki" */;
+			buildPhases = (
+				0B2D0F622400422400815D22 /* Sources */,
+				0B2D0F632400422400815D22 /* Frameworks */,
+				0B2D0F642400422400815D22 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MotoWiki;
+			productName = MotoWiki;
+			productReference = 0B2D0F662400422400815D22 /* MotoWiki.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0B2D0F5E2400422400815D22 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Eugene Kireichev";
+				TargetAttributes = {
+					0B2D0F652400422400815D22 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 0B2D0F612400422400815D22 /* Build configuration list for PBXProject "MotoWiki" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0B2D0F5D2400422400815D22;
+			productRefGroup = 0B2D0F672400422400815D22 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0B2D0F652400422400815D22 /* MotoWiki */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0B2D0F642400422400815D22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B2D0F762400422500815D22 /* LaunchScreen.storyboard in Resources */,
+				0B2D0F732400422500815D22 /* Assets.xcassets in Resources */,
+				0B2D0F712400422400815D22 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0B2D0F622400422400815D22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B8FC0F62402FE1900C98C07 /* PurposeModel.swift in Sources */,
+				0BA3D87F240CEF8B0095B469 /* BrandEditorViewController.swift in Sources */,
+				0B6BDD662407AFAB009D28D3 /* BikeEditorViewController.swift in Sources */,
+				0B1DCD3324030299001DF0AB /* Brand.swift in Sources */,
+				0B6BDD682407B0B7009D28D3 /* BikeImageCell.swift in Sources */,
+				0B906F0E242DF0EC00AA9713 /* BrandList.swift in Sources */,
+				0B6BDD6A2407B0D2009D28D3 /* BikeEditorCell.swift in Sources */,
+				0B3549492410E37D00780687 /* BikeViewerViewController.swift in Sources */,
+				0B35494B2410E47A00780687 /* BikeViewerCell.swift in Sources */,
+				0B35BF742401436600D0495D /* BikeListViewController.swift in Sources */,
+				0BA3D885240CF0E40095B469 /* BrandEditorCell.swift in Sources */,
+				0B35BF6E240137C900D0495D /* BrandListViewController.swift in Sources */,
+				0BF80E9E24309F7900DDE4D3 /* BikeList.swift in Sources */,
+				0BA3D887240D1F520095B469 /* BrandImageCell.swift in Sources */,
+				0B8FC0F82403000F00C98C07 /* Bike.swift in Sources */,
+				0B491AB62402D2F900B321D4 /* EngineTypeModel.swift in Sources */,
+				0BED98B6241288DE004D48A1 /* BikeViewerImageCell.swift in Sources */,
+				0B35BF70240139D400D0495D /* BrandListCell.swift in Sources */,
+				0B35BF722401434700D0495D /* BikeListCell.swift in Sources */,
+				0B2D0F6A2400422400815D22 /* AppDelegate.swift in Sources */,
+				0B2D0F6C2400422400815D22 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0B2D0F6F2400422400815D22 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B2D0F702400422400815D22 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0B2D0F742400422500815D22 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B2D0F752400422500815D22 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0B2D0F782400422500815D22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0B2D0F792400422500815D22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0B2D0F7B2400422500815D22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MotoWiki/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MotoWiki;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		0B2D0F7C2400422500815D22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MotoWiki/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MotoWiki;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0B2D0F612400422400815D22 /* Build configuration list for PBXProject "MotoWiki" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B2D0F782400422500815D22 /* Debug */,
+				0B2D0F792400422500815D22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0B2D0F7A2400422500815D22 /* Build configuration list for PBXNativeTarget "MotoWiki" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B2D0F7B2400422500815D22 /* Debug */,
+				0B2D0F7C2400422500815D22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0B2D0F5E2400422400815D22 /* Project object */;
+}
