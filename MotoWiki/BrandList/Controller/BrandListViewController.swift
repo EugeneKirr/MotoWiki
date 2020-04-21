@@ -35,7 +35,7 @@ class BrandListViewController: UITableViewController {
     }
     
     @objc func tapAddButton() {
-        guard let brandEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BrandEditorVC") as? BrandEditorViewController else { return }
+        guard let brandEditorVC = UIStoryboard(name: "BrandEditor", bundle: nil).instantiateViewController(withIdentifier: "brandEditorVC") as? BrandEditorViewController else { return }
         brandEditorVC.delegate = self
         self.navigationController?.pushViewController(brandEditorVC, animated: true)
     }
@@ -59,7 +59,7 @@ class BrandListViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let bikeListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BikeListVC") as? BikeListViewController else { return }
+        guard let bikeListVC = UIStoryboard(name: "BikeList", bundle: nil).instantiateViewController(withIdentifier: "bikeListVC") as? BikeListViewController else { return }
         bikeListVC.brandOfInterest = BrandList.content[indexPath.row]
         self.navigationController?.pushViewController(bikeListVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -69,7 +69,7 @@ class BrandListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
-            guard let brandEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BrandEditorVC") as? BrandEditorViewController else { return }
+            guard let brandEditorVC = UIStoryboard(name: "BrandEditor", bundle: nil).instantiateViewController(withIdentifier: "brandEditorVC") as? BrandEditorViewController else { return }
             brandEditorVC.editableBrand = BrandList.content[indexPath.row]
             brandEditorVC.delegate = self
             

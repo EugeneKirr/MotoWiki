@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bike Editor View Controller-->
+        <scene sceneID="BYh-Hw-bIw">
+            <objects>
+                <tableViewController storyboardIdentifier="bikeEditorVC" id="K4o-EE-0uD" customClass="BikeEditorViewController" customModule="MotoWiki" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WHb-Up-ca8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BikeImageCell" rowHeight="200" id="UhX-Mu-plA" customClass="BikeImageCell" customModule="MotoWiki" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UhX-Mu-plA" id="qU6-ko-foU">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="motorcycle" translatesAutoresizingMaskIntoConstraints="NO" id="5xJ-Si-st3">
+                                            <rect key="frame" x="16" y="11" width="288" height="178"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5xJ-Si-st3" firstAttribute="bottom" secondItem="qU6-ko-foU" secondAttribute="bottomMargin" id="JdZ-gg-WG0"/>
+                                        <constraint firstItem="5xJ-Si-st3" firstAttribute="top" secondItem="qU6-ko-foU" secondAttribute="topMargin" id="i05-bT-y6C"/>
+                                        <constraint firstItem="5xJ-Si-st3" firstAttribute="leading" secondItem="qU6-ko-foU" secondAttribute="leadingMargin" id="kbS-8L-qnY"/>
+                                        <constraint firstItem="5xJ-Si-st3" firstAttribute="trailing" secondItem="qU6-ko-foU" secondAttribute="trailingMargin" id="yo4-CJ-oW8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bikeImage" destination="5xJ-Si-st3" id="VET-M2-LwQ"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BikeEditorCell" rowHeight="85" id="yhW-os-X1i" customClass="BikeEditorCell" customModule="MotoWiki" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="320" height="85"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yhW-os-X1i" id="xqg-Ch-Wla">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="None" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="638-zo-ez7">
+                                            <rect key="frame" x="91" y="11" width="213" height="63"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uho-aI-c31">
+                                            <rect key="frame" x="16" y="11" width="75" height="63"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Uho-aI-c31" firstAttribute="top" secondItem="xqg-Ch-Wla" secondAttribute="topMargin" id="FYB-tf-eYt"/>
+                                        <constraint firstItem="638-zo-ez7" firstAttribute="bottom" secondItem="xqg-Ch-Wla" secondAttribute="bottomMargin" id="Qs3-qX-J2N"/>
+                                        <constraint firstItem="638-zo-ez7" firstAttribute="top" secondItem="xqg-Ch-Wla" secondAttribute="topMargin" id="cpg-fD-n21"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Uho-aI-c31" secondAttribute="bottom" id="fpu-Se-tuI"/>
+                                        <constraint firstItem="638-zo-ez7" firstAttribute="leading" secondItem="Uho-aI-c31" secondAttribute="trailing" id="gdI-2l-GvX"/>
+                                        <constraint firstItem="Uho-aI-c31" firstAttribute="leading" secondItem="xqg-Ch-Wla" secondAttribute="leadingMargin" id="lD2-rJ-zox"/>
+                                        <constraint firstItem="638-zo-ez7" firstAttribute="trailing" secondItem="xqg-Ch-Wla" secondAttribute="trailingMargin" id="m4W-gN-7RN"/>
+                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Uho-aI-c31" secondAttribute="trailing" constant="229" id="psc-dT-Y5V"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bikePropertyLabel" destination="Uho-aI-c31" id="x4n-bQ-LHE"/>
+                                    <outlet property="bikePropertyText" destination="638-zo-ez7" id="kBU-Q4-PF4"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="K4o-EE-0uD" id="u7W-R3-SEX"/>
+                            <outlet property="delegate" destination="K4o-EE-0uD" id="0nh-Vj-JgE"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bA6-dc-7c3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="868"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="motorcycle" width="256" height="256"/>
+    </resources>
+</document>

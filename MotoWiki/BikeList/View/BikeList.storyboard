@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bike List-->
+        <scene sceneID="rL3-Rh-Gdl">
+            <objects>
+                <tableViewController storyboardIdentifier="bikeListVC" id="91B-E8-KMU" userLabel="Bike List" customClass="BikeListViewController" customModule="MotoWiki" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lvW-sZ-JlS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BikeListCell" rowHeight="85" id="Cjx-1a-OL7" customClass="BikeListCell" customModule="MotoWiki" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="85"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cjx-1a-OL7" id="u0x-T3-bcw">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="motorcycle" translatesAutoresizingMaskIntoConstraints="NO" id="Hy4-NT-KRa">
+                                            <rect key="frame" x="16" y="16" width="116" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="116" id="CJy-SP-EK5"/>
+                                                <constraint firstAttribute="height" constant="58" id="q5m-Xx-M5H"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bike Model" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovw-mp-GYq">
+                                            <rect key="frame" x="150" y="16" width="140" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="58" id="OOu-9s-24W"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="SO9-IH-kdc"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XQg-NS-tts">
+                                            <rect key="frame" x="290" y="29.5" width="20" height="26.5"/>
+                                            <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="U3e-W8-Yal"/>
+                                                <constraint firstAttribute="height" constant="30" id="euA-Te-XBg"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XQg-NS-tts" firstAttribute="centerY" secondItem="u0x-T3-bcw" secondAttribute="centerY" id="EoA-l9-k1z"/>
+                                        <constraint firstItem="Hy4-NT-KRa" firstAttribute="leading" secondItem="u0x-T3-bcw" secondAttribute="leading" constant="16" id="VEJ-Sk-5ek"/>
+                                        <constraint firstAttribute="trailing" secondItem="XQg-NS-tts" secondAttribute="trailing" constant="10" id="b8c-u3-af4"/>
+                                        <constraint firstAttribute="bottom" secondItem="Hy4-NT-KRa" secondAttribute="bottom" constant="11" id="jlb-Ts-EdS"/>
+                                        <constraint firstItem="Ovw-mp-GYq" firstAttribute="top" secondItem="u0x-T3-bcw" secondAttribute="top" constant="16" id="k6I-HS-MIP"/>
+                                        <constraint firstItem="XQg-NS-tts" firstAttribute="top" secondItem="u0x-T3-bcw" secondAttribute="top" constant="27.5" id="kdb-SA-J5x"/>
+                                        <constraint firstItem="Ovw-mp-GYq" firstAttribute="leading" secondItem="Hy4-NT-KRa" secondAttribute="trailing" constant="18" id="q1U-qD-wOX"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ovw-mp-GYq" secondAttribute="trailing" constant="30" id="tF9-Uf-qZz"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bikeImage" destination="Hy4-NT-KRa" id="lxo-Ty-mDB"/>
+                                    <outlet property="bikeName" destination="Ovw-mp-GYq" id="W4g-DW-fhL"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="91B-E8-KMU" id="eKc-hk-qa7"/>
+                            <outlet property="delegate" destination="91B-E8-KMU" id="Nae-OJ-VP5"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aBW-9Q-On9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1890" y="68.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.right" catalog="system" width="32" height="32"/>
+        <image name="motorcycle" width="256" height="256"/>
+    </resources>
+</document>
