@@ -25,6 +25,10 @@ class BrandListViewController: UITableViewController {
     // MARK: - Navigation bar
     
     func configureNavigationBar() {
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = .darkText
+        self.navigationController?.navigationBar.barTintColor = .systemYellow
+        
         let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapAddButton) )
         self.navigationItem.rightBarButtonItem = navAddButton
         self.navigationItem.title = "Brand List"

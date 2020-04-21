@@ -3,14 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0B1DCD3324030299001DF0AB /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DCD3224030299001DF0AB /* Brand.swift */; };
 		0B2D0F6A2400422400815D22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D0F692400422400815D22 /* AppDelegate.swift */; };
 		0B2D0F6C2400422400815D22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D0F6B2400422400815D22 /* SceneDelegate.swift */; };
-		0B2D0F712400422400815D22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D0F6F2400422400815D22 /* Main.storyboard */; };
+		0B2D0F712400422400815D22 /* BrandList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D0F6F2400422400815D22 /* BrandList.storyboard */; };
 		0B2D0F732400422500815D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D0F722400422500815D22 /* Assets.xcassets */; };
 		0B2D0F762400422500815D22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D0F742400422500815D22 /* LaunchScreen.storyboard */; };
 		0B3549492410E37D00780687 /* BikeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3549482410E37D00780687 /* BikeViewerViewController.swift */; };
@@ -39,7 +39,7 @@
 		0B2D0F662400422400815D22 /* MotoWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B2D0F692400422400815D22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B2D0F6B2400422400815D22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0B2D0F702400422400815D22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0B2D0F702400422400815D22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BrandList.storyboard; sourceTree = "<group>"; };
 		0B2D0F722400422500815D22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B2D0F752400422500815D22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B2D0F772400422500815D22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,7 +84,6 @@
 				68244DB6E1733E6FA0DF7C70 /* Pods-MotoWiki.debug.xcconfig */,
 				6E6EA4D2B2DA72CEA2D61183 /* Pods-MotoWiki.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -139,17 +138,12 @@
 		0B2D0F682400422400815D22 /* MotoWiki */ = {
 			isa = PBXGroup;
 			children = (
-				0B2D0F692400422400815D22 /* AppDelegate.swift */,
-				0B2D0F6B2400422400815D22 /* SceneDelegate.swift */,
+				0BCC53D3244F47ED007D162E /* Supporting Files */,
 				0B161EA024066EB60074105E /* BrandList */,
 				0BA3D880240CEF960095B469 /* BrandEditor */,
 				0B161EA1240687C10074105E /* BikeList */,
 				0B161EA3240688310074105E /* BikeEditor */,
 				0B51F732240FE310004D434A /* BikeViewer */,
-				0B2D0F6F2400422400815D22 /* Main.storyboard */,
-				0B2D0F722400422500815D22 /* Assets.xcassets */,
-				0B2D0F742400422500815D22 /* LaunchScreen.storyboard */,
-				0B2D0F772400422500815D22 /* Info.plist */,
 			);
 			path = MotoWiki;
 			sourceTree = "<group>";
@@ -208,7 +202,6 @@
 		0B51F732240FE310004D434A /* BikeViewer */ = {
 			isa = PBXGroup;
 			children = (
-				0B51F735240FE41A004D434A /* Model */,
 				0B51F734240FE415004D434A /* View */,
 				0B51F733240FE40F004D434A /* Controller */,
 			);
@@ -232,13 +225,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0B51F735240FE41A004D434A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		0B7D2714240CE6EE0021F1E9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				0B35BF6F240139D400D0495D /* BrandListCell.swift */,
+				0B2D0F6F2400422400815D22 /* BrandList.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +283,18 @@
 				0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		0BCC53D3244F47ED007D162E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B2D0F692400422400815D22 /* AppDelegate.swift */,
+				0B2D0F6B2400422400815D22 /* SceneDelegate.swift */,
+				0B2D0F742400422500815D22 /* LaunchScreen.storyboard */,
+				0B2D0F722400422500815D22 /* Assets.xcassets */,
+				0B2D0F772400422500815D22 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		D9E6F27C5F302568A690142F /* Frameworks */ = {
@@ -368,7 +367,7 @@
 			files = (
 				0B2D0F762400422500815D22 /* LaunchScreen.storyboard in Resources */,
 				0B2D0F732400422500815D22 /* Assets.xcassets in Resources */,
-				0B2D0F712400422400815D22 /* Main.storyboard in Resources */,
+				0B2D0F712400422400815D22 /* BrandList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,12 +447,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0B2D0F6F2400422400815D22 /* Main.storyboard */ = {
+		0B2D0F6F2400422400815D22 /* BrandList.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0B2D0F702400422400815D22 /* Base */,
 			);
-			name = Main.storyboard;
+			name = BrandList.storyboard;
 			sourceTree = "<group>";
 		};
 		0B2D0F742400422500815D22 /* LaunchScreen.storyboard */ = {
@@ -587,7 +586,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MotoWiki/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MotoWiki/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -605,7 +604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MotoWiki/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MotoWiki/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
