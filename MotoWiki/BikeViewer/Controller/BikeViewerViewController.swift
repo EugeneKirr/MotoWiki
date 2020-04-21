@@ -31,7 +31,7 @@ class BikeViewerViewController: UITableViewController {
     }
     
     @objc func tapEditButton(_ sender: UIBarButtonItem) {
-        guard let bikeEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BikeEditorVC") as? BikeEditorViewController else { return }
+        guard let bikeEditorVC = UIStoryboard(name: "BikeEditor", bundle: nil).instantiateViewController(identifier: "bikeEditorVC") as? BikeEditorViewController else { return }
         bikeEditorVC.editableBike = chosenBike
         bikeEditorVC.delegate = self
         self.navigationController?.pushViewController(bikeEditorVC, animated: true)

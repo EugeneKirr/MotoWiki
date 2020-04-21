@@ -53,7 +53,7 @@ class BikeListViewController: UITableViewController {
     }
     
     @objc func tapAddButton() {
-        guard let bikeEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BikeEditorVC") as? BikeEditorViewController else { return }
+        guard let bikeEditorVC = UIStoryboard(name: "BikeEditor", bundle: nil).instantiateViewController(identifier: "bikeEditorVC") as? BikeEditorViewController else { return }
         bikeEditorVC.delegate = self
         self.navigationController?.pushViewController(bikeEditorVC, animated: true)
     }
@@ -77,7 +77,7 @@ class BikeListViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let bikeViewerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BikeViewerVC") as? BikeViewerViewController else { return }
+        guard let bikeViewerVC = UIStoryboard(name: "BikeViewer", bundle: nil).instantiateViewController(withIdentifier: "bikeViewerVC") as? BikeViewerViewController else { return }
         bikeViewerVC.chosenBike = chosenBikes[indexPath.row]
         bikeViewerVC.chosenBikeIndex = BikeList.getIndex(for: chosenBikes[indexPath.row])
         
@@ -90,7 +90,7 @@ class BikeListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     
         let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
-            guard let bikeEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BikeEditorVC") as? BikeEditorViewController else { return }
+            guard let bikeEditorVC = UIStoryboard(name: "BikeEditor", bundle: nil).instantiateViewController(identifier: "bikeEditorVC") as? BikeEditorViewController else { return }
             bikeEditorVC.editableBike = self.chosenBikes[indexPath.row]
             bikeEditorVC.delegate = self
             
