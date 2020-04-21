@@ -19,6 +19,7 @@
 		0B35BF70240139D400D0495D /* BrandListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35BF6F240139D400D0495D /* BrandListCell.swift */; };
 		0B35BF722401434700D0495D /* BikeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35BF712401434700D0495D /* BikeListCell.swift */; };
 		0B35BF742401436600D0495D /* BikeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35BF732401436600D0495D /* BikeListViewController.swift */; };
+		0B3D8C1E244F610A00273067 /* BrandListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3D8C1D244F610A00273067 /* BrandListCell.xib */; };
 		0B491AB62402D2F900B321D4 /* EngineTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */; };
 		0B6BDD662407AFAB009D28D3 /* BikeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */; };
 		0B6BDD682407B0B7009D28D3 /* BikeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BDD672407B0B7009D28D3 /* BikeImageCell.swift */; };
@@ -49,6 +50,7 @@
 		0B35BF6F240139D400D0495D /* BrandListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandListCell.swift; sourceTree = "<group>"; };
 		0B35BF712401434700D0495D /* BikeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListCell.swift; sourceTree = "<group>"; };
 		0B35BF732401436600D0495D /* BikeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListViewController.swift; sourceTree = "<group>"; };
+		0B3D8C1D244F610A00273067 /* BrandListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandListCell.xib; sourceTree = "<group>"; };
 		0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTypeModel.swift; sourceTree = "<group>"; };
 		0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeEditorViewController.swift; sourceTree = "<group>"; };
 		0B6BDD672407B0B7009D28D3 /* BikeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeImageCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,15 @@
 			path = MotoWiki;
 			sourceTree = "<group>";
 		};
+		0B3D8C1C244F60DA00273067 /* BrandListCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B35BF6F240139D400D0495D /* BrandListCell.swift */,
+				0B3D8C1D244F610A00273067 /* BrandListCell.xib */,
+			);
+			path = BrandListCell;
+			sourceTree = "<group>";
+		};
 		0B51F72B240FCC0D004D434A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,7 +247,7 @@
 		0B7D2715240CE6F60021F1E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0B35BF6F240139D400D0495D /* BrandListCell.swift */,
+				0B3D8C1C244F60DA00273067 /* BrandListCell */,
 				0B2D0F6F2400422400815D22 /* BrandList.storyboard */,
 			);
 			path = View;
@@ -366,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2D0F762400422500815D22 /* LaunchScreen.storyboard in Resources */,
+				0B3D8C1E244F610A00273067 /* BrandListCell.xib in Resources */,
 				0B2D0F732400422500815D22 /* Assets.xcassets in Resources */,
 				0B2D0F712400422400815D22 /* BrandList.storyboard in Resources */,
 			);
