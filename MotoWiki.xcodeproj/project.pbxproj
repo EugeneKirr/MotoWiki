@@ -31,6 +31,7 @@
 		0BA3D887240D1F520095B469 /* BrandImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3D886240D1F520095B469 /* BrandImageCell.swift */; };
 		0BED98B6241288DE004D48A1 /* BikeViewerImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BED98B5241288DE004D48A1 /* BikeViewerImageCell.swift */; };
 		0BF80E9E24309F7900DDE4D3 /* BikeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF80E9D24309F7900DDE4D3 /* BikeList.swift */; };
+		50D7EC20255502A9B7991E58 /* Pods_MotoWiki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A5761093767AE8E0E49836 /* Pods_MotoWiki.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,9 @@
 		0BA3D886240D1F520095B469 /* BrandImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandImageCell.swift; sourceTree = "<group>"; };
 		0BED98B5241288DE004D48A1 /* BikeViewerImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewerImageCell.swift; sourceTree = "<group>"; };
 		0BF80E9D24309F7900DDE4D3 /* BikeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeList.swift; sourceTree = "<group>"; };
+		68244DB6E1733E6FA0DF7C70 /* Pods-MotoWiki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoWiki.debug.xcconfig"; path = "Target Support Files/Pods-MotoWiki/Pods-MotoWiki.debug.xcconfig"; sourceTree = "<group>"; };
+		6E6EA4D2B2DA72CEA2D61183 /* Pods-MotoWiki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoWiki.release.xcconfig"; path = "Target Support Files/Pods-MotoWiki/Pods-MotoWiki.release.xcconfig"; sourceTree = "<group>"; };
+		90A5761093767AE8E0E49836 /* Pods_MotoWiki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MotoWiki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,12 +71,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D7EC20255502A9B7991E58 /* Pods_MotoWiki.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05A093121D9A48C39E4E23E0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				68244DB6E1733E6FA0DF7C70 /* Pods-MotoWiki.debug.xcconfig */,
+				6E6EA4D2B2DA72CEA2D61183 /* Pods-MotoWiki.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		0B161EA024066EB60074105E /* BrandList */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +123,8 @@
 			children = (
 				0B2D0F682400422400815D22 /* MotoWiki */,
 				0B2D0F672400422400815D22 /* Products */,
+				05A093121D9A48C39E4E23E0 /* Pods */,
+				D9E6F27C5F302568A690142F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -281,6 +298,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		D9E6F27C5F302568A690142F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90A5761093767AE8E0E49836 /* Pods_MotoWiki.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -288,9 +313,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B2D0F7A2400422500815D22 /* Build configuration list for PBXNativeTarget "MotoWiki" */;
 			buildPhases = (
+				0742090B027A375A8CBC3FBD /* [CP] Check Pods Manifest.lock */,
 				0B2D0F622400422400815D22 /* Sources */,
 				0B2D0F632400422400815D22 /* Frameworks */,
 				0B2D0F642400422400815D22 /* Resources */,
+				B3E164E3885272812814751E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -346,6 +373,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0742090B027A375A8CBC3FBD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MotoWiki-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3E164E3885272812814751E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MotoWiki/Pods-MotoWiki-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MotoWiki/Pods-MotoWiki-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MotoWiki/Pods-MotoWiki-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0B2D0F622400422400815D22 /* Sources */ = {
@@ -514,6 +583,7 @@
 		};
 		0B2D0F7B2400422500815D22 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68244DB6E1733E6FA0DF7C70 /* Pods-MotoWiki.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +601,7 @@
 		};
 		0B2D0F7C2400422500815D22 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6EA4D2B2DA72CEA2D61183 /* Pods-MotoWiki.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
