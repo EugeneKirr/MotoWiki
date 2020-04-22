@@ -14,7 +14,14 @@ class BrandListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
+        configureNavBar(title: "Brand List") {
+            let navSwitchViewButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(self.tapSwitchViewButton))
+            let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.tapAddButton) )
+            self.navigationItem.leftBarButtonItem = navSwitchViewButton
+            self.navigationItem.rightBarButtonItem = navAddButton
+        }
+        registerCell(xibName: "BrandListCell", cellIdentifier: "brandListCell", viewController: .brandListVC)
+        setInitial(viewController: .brandListVC)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -22,22 +29,21 @@ class BrandListViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    // MARK: - Navigation bar
+    // MARK: - Navigation bar actions
     
-    func configureNavigationBar() {
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.tintColor = .darkText
-        self.navigationController?.navigationBar.barTintColor = .systemYellow
-        
-        let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapAddButton) )
-        self.navigationItem.rightBarButtonItem = navAddButton
-        self.navigationItem.title = "Brand List"
+    @objc func tapSwitchViewButton() {
+        guard self.navigationController?.children.count == 1 else {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        initializeAndPush(viewController: .brandCollectionVC)
     }
     
     @objc func tapAddButton() {
-        guard let brandEditorVC = UIStoryboard(name: "BrandEditor", bundle: nil).instantiateViewController(withIdentifier: "brandEditorVC") as? BrandEditorViewController else { return }
-        brandEditorVC.delegate = self
-        self.navigationController?.pushViewController(brandEditorVC, animated: true)
+        initializeAndPush(viewController: .brandEditorVC) { vc in
+            guard let brandEditorVC = vc as? BrandEditorViewController else { return }
+            brandEditorVC.delegate = self
+        }
     }
 
     // MARK: - Table view data source
@@ -47,13 +53,13 @@ class BrandListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BrandListCell", for: indexPath) as? BrandListCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "brandListCell", for: indexPath) as? BrandListCell else { return UITableViewCell() }
         cell.loadView(brand: BrandList.content[indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return 80
     }
     
     // MARK: - Table view delegate

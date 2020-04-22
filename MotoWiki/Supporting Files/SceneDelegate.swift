@@ -15,14 +15,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
-        
-        let brandListSB = UIStoryboard(name: "BrandList", bundle: nil)
-        let brandListVC = brandListSB.instantiateViewController(identifier: "brandListVC")
-        
-        let navController = UINavigationController(rootViewController: brandListVC)
+        initializeAndSetRootVC()
+    }
+    
+    func initializeAndSetRootVC() {
+        let initialVC = getInitialVC()
+        let storyboard = UIStoryboard(name: initialVC.storyboardName, bundle: nil)
+        let viewController = storyboard.instantiateViewController(identifier: initialVC.vcIdentifier)
+        let navController = UINavigationController(rootViewController: viewController)
         self.window?.rootViewController = navController
     }
-
+    
+    func getInitialVC() -> ProjectViewControllers {
+        let defaults = UserDefaults.standard
+        guard let initialRawValue = defaults.object(forKey: UDKeys.initialVC.key) as? String,
+              let initialVC = ProjectViewControllers(rawValue: initialRawValue) else { return ProjectViewControllers.brandListVC }
+        return initialVC
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

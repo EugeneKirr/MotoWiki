@@ -16,26 +16,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="I3T-er-KGe">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                        <rect key="frame" x="8" y="8" width="80" height="64"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="M9b-rH-jNw"/>
+                            <constraint firstAttribute="width" constant="80" id="M9b-rH-jNw"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MFL-2Y-Hb2">
-                        <rect key="frame" x="290" y="2" width="30" height="76.5"/>
-                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="284" y="2" width="20" height="76.5"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="OVV-ET-IfW"/>
+                            <constraint firstAttribute="width" constant="20" id="OVV-ET-IfW"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8S-2W-6Cd">
-                        <rect key="frame" x="108" y="12" width="174" height="24"/>
+                        <rect key="frame" x="96" y="12" width="180" height="24"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country of origin" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxC-9v-wOn">
-                        <rect key="frame" x="108" y="46" width="174" height="20.5"/>
+                        <rect key="frame" x="96" y="46" width="180" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -45,17 +45,22 @@
                     <constraint firstItem="M8S-2W-6Cd" firstAttribute="leading" secondItem="I3T-er-KGe" secondAttribute="trailing" constant="8" id="10S-81-HOW"/>
                     <constraint firstItem="dxC-9v-wOn" firstAttribute="centerY" secondItem="2Tm-sR-ru0" secondAttribute="centerY" constant="16" id="3k9-1o-QFC"/>
                     <constraint firstItem="MFL-2Y-Hb2" firstAttribute="leading" secondItem="dxC-9v-wOn" secondAttribute="trailing" constant="8" id="7B4-4D-ROV"/>
-                    <constraint firstAttribute="trailing" secondItem="MFL-2Y-Hb2" secondAttribute="trailing" id="ACB-BS-gXM"/>
+                    <constraint firstAttribute="trailing" secondItem="MFL-2Y-Hb2" secondAttribute="trailing" constant="16" id="ACB-BS-gXM"/>
                     <constraint firstAttribute="bottom" secondItem="MFL-2Y-Hb2" secondAttribute="bottom" id="Eu0-Oo-0Ae"/>
-                    <constraint firstAttribute="bottom" secondItem="I3T-er-KGe" secondAttribute="bottom" id="FM4-ko-Khj"/>
+                    <constraint firstAttribute="bottom" secondItem="I3T-er-KGe" secondAttribute="bottom" constant="8" id="FM4-ko-Khj"/>
                     <constraint firstItem="M8S-2W-6Cd" firstAttribute="centerY" secondItem="2Tm-sR-ru0" secondAttribute="centerY" constant="-16" id="LEU-BO-WIg"/>
                     <constraint firstItem="MFL-2Y-Hb2" firstAttribute="top" secondItem="2Tm-sR-ru0" secondAttribute="top" id="SxW-Y7-WAB"/>
                     <constraint firstItem="dxC-9v-wOn" firstAttribute="leading" secondItem="I3T-er-KGe" secondAttribute="trailing" constant="8" id="TF5-UM-dFq"/>
                     <constraint firstItem="MFL-2Y-Hb2" firstAttribute="leading" secondItem="M8S-2W-6Cd" secondAttribute="trailing" constant="8" id="oSc-br-Qbt"/>
-                    <constraint firstItem="I3T-er-KGe" firstAttribute="leading" secondItem="2Tm-sR-ru0" secondAttribute="leading" id="tq9-yG-9Iu"/>
-                    <constraint firstItem="I3T-er-KGe" firstAttribute="top" secondItem="2Tm-sR-ru0" secondAttribute="top" id="wkJ-GE-zsE"/>
+                    <constraint firstItem="I3T-er-KGe" firstAttribute="leading" secondItem="2Tm-sR-ru0" secondAttribute="leading" constant="8" id="tq9-yG-9Iu"/>
+                    <constraint firstItem="I3T-er-KGe" firstAttribute="top" secondItem="2Tm-sR-ru0" secondAttribute="top" constant="8" id="wkJ-GE-zsE"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="brandImage" destination="I3T-er-KGe" id="HT7-aY-zhY"/>
+                <outlet property="brandNameLabel" destination="M8S-2W-6Cd" id="GUP-Z4-0xc"/>
+                <outlet property="brandOriginLabel" destination="dxC-9v-wOn" id="E1j-VQ-PnW"/>
+            </connections>
             <point key="canvasLocation" x="-384.375" y="12.5"/>
         </tableViewCell>
     </objects>
