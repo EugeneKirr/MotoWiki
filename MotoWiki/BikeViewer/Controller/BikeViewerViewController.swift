@@ -16,6 +16,7 @@ class BikeViewerViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        registerCells([.editorImageCell, .editorPropertyCell])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,12 +47,12 @@ class BikeViewerViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeViewerImageCell", for: indexPath) as? BikeViewerImageCell else { return UITableViewCell() }
-            cell.bikeImage.image = chosenBike.bikeImage
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorImageCell.cellIdentifier, for: indexPath) as? EditorImageCell else { return UITableViewCell() }
+            //cell.bikeImage.image = chosenBike.bikeImage
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeViewerCell", for: indexPath) as? BikeViewerCell else { return UITableViewCell() }
-            cell.loadView(bike: chosenBike, index: (indexPath.row - 1) )
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
+            //cell.loadView(bike: chosenBike, index: (indexPath.row - 1) )
             return cell
         }
     }

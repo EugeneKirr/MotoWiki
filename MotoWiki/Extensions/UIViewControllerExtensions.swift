@@ -13,13 +13,27 @@ extension UIViewController {
     func registerCell(xibName: String, cellIdentifier: String, viewController: ProjectViewControllers) {
         let nib = UINib(nibName: xibName, bundle: nil)
         switch viewController {
-        case .brandListVC, .bikeListVC:
+        case .brandListVC, .brandEditorVC, .bikeListVC, .bikeEditorVC, .bikeViewerVC:
             guard let self = self as? UITableViewController else { return }
             self.tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
         case .brandCollectionVC:
             guard let self = self as? UICollectionViewController else { return }
             self.collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
-        default: return
+        }
+    }
+    
+    func registerCells(_ cells: [ProjectViews]) {
+        for cell in cells {
+            let nib = UINib(nibName: cell.xibName, bundle: nil)
+            switch cell.superclassDescription {
+            case "UITableViewCell":
+                guard let self = self as? UITableViewController else { return }
+                self.tableView.register(nib, forCellReuseIdentifier: cell.cellIdentifier)
+            case "UICollectionViewCell":
+                guard let self = self as? UICollectionViewController else { return }
+                self.collectionView.register(nib, forCellWithReuseIdentifier: cell.cellIdentifier)
+            default: return
+            }
         }
     }
     

@@ -57,7 +57,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="brandImage" destination="I3T-er-KGe" id="HT7-aY-zhY"/>
+                <outlet property="brandImageView" destination="I3T-er-KGe" id="ec3-OI-sbv"/>
                 <outlet property="brandNameLabel" destination="M8S-2W-6Cd" id="GUP-Z4-0xc"/>
                 <outlet property="brandOriginLabel" destination="dxC-9v-wOn" id="E1j-VQ-PnW"/>
             </connections>

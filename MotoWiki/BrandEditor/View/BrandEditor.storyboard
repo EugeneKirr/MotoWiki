@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,67 +14,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BrandImageCell" rowHeight="200" id="lsV-La-iM9" customClass="BrandImageCell" customModule="MotoWiki" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="200"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lsV-La-iM9" id="L5Q-aR-6yu">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="DwD-7P-xWG">
-                                            <rect key="frame" x="71" y="11" width="178" height="178"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="178" id="KnF-FX-gdV"/>
-                                                <constraint firstAttribute="width" constant="178" id="wEF-fa-8Uq"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="DwD-7P-xWG" firstAttribute="centerX" secondItem="L5Q-aR-6yu" secondAttribute="centerX" id="k68-Eg-ruT"/>
-                                        <constraint firstItem="DwD-7P-xWG" firstAttribute="centerY" secondItem="L5Q-aR-6yu" secondAttribute="centerY" id="yuw-C7-kAh"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="brandImage" destination="DwD-7P-xWG" id="zID-G0-vBn"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BrandEditorCell" rowHeight="85" id="ncM-4G-8MX" customClass="BrandEditorCell" customModule="MotoWiki" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="228" width="320" height="85"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ncM-4G-8MX" id="VRt-xB-f2N">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="None" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cod-dg-eXt">
-                                            <rect key="frame" x="91" y="11" width="213" height="63"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                        </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owz-Wr-rnK">
-                                            <rect key="frame" x="16" y="11" width="75" height="63"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="owz-Wr-rnK" firstAttribute="leading" secondItem="VRt-xB-f2N" secondAttribute="leadingMargin" id="2VB-xx-acU"/>
-                                        <constraint firstItem="Cod-dg-eXt" firstAttribute="leading" secondItem="owz-Wr-rnK" secondAttribute="trailing" id="9pl-as-Ek5"/>
-                                        <constraint firstItem="Cod-dg-eXt" firstAttribute="trailing" secondItem="VRt-xB-f2N" secondAttribute="trailingMargin" id="Am8-J6-EpN"/>
-                                        <constraint firstItem="Cod-dg-eXt" firstAttribute="bottom" secondItem="VRt-xB-f2N" secondAttribute="bottomMargin" id="EyD-Ru-5Wm"/>
-                                        <constraint firstItem="owz-Wr-rnK" firstAttribute="bottom" secondItem="VRt-xB-f2N" secondAttribute="bottomMargin" id="fDh-JA-5b9"/>
-                                        <constraint firstItem="Cod-dg-eXt" firstAttribute="top" secondItem="VRt-xB-f2N" secondAttribute="topMargin" id="krP-O0-r79"/>
-                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="owz-Wr-rnK" secondAttribute="trailing" constant="229" id="onf-du-d3P"/>
-                                        <constraint firstItem="owz-Wr-rnK" firstAttribute="top" secondItem="VRt-xB-f2N" secondAttribute="topMargin" id="q6a-0Y-GKw"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="brandPropertyLabel" destination="owz-Wr-rnK" id="ONO-om-oXg"/>
-                                    <outlet property="brandPropertyText" destination="Cod-dg-eXt" id="k3W-2l-11k"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="GTr-nZ-UVO" id="bAE-5Z-u0N"/>
                             <outlet property="delegate" destination="GTr-nZ-UVO" id="3al-3C-kiV"/>
@@ -86,7 +25,4 @@
             <point key="canvasLocation" x="1093" y="868"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Default" width="512" height="512"/>
-    </resources>
 </document>

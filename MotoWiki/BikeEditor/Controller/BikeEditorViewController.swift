@@ -23,6 +23,7 @@ class BikeEditorViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        registerCells([.editorImageCell, .editorPropertyCell])
         
         savedBike.bikeImage = editableBike.bikeImage
         savedBike.propertyValues = editableBike.propertyValues
@@ -58,14 +59,14 @@ class BikeEditorViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeImageCell", for: indexPath) as? BikeImageCell else { return UITableViewCell() }
-            cell.bikeImage.image = editableBike.bikeImage
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorImageCell.cellIdentifier, for: indexPath) as? EditorImageCell else { return UITableViewCell() }
+//            cell.bikeImage.image = editableBike.bikeImage
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeEditorCell", for: indexPath) as? BikeEditorCell else { return UITableViewCell() }
-            cell.loadView(bike: editableBike, index: (indexPath.row-1) )
-            cell.bikePropertyText.delegate = self
-            cell.bikePropertyText.tag = (indexPath.row-1)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
+//            cell.loadView(bike: editableBike, index: (indexPath.row-1) )
+//            cell.bikePropertyText.delegate = self
+//            cell.bikePropertyText.tag = (indexPath.row-1)
             return cell
         }
     }
@@ -128,11 +129,11 @@ extension BikeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? BikeImageCell else { return }
-        imageCell.bikeImage.image = info[.editedImage] as? UIImage
-        imageCell.bikeImage.contentMode = .scaleAspectFill
+        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell else { return }
+//        imageCell.bikeImage.image = info[.editedImage] as? UIImage
+//        imageCell.bikeImage.contentMode = .scaleAspectFill
         
-        savedBike.bikeImage = imageCell.bikeImage.image
+//        savedBike.bikeImage = imageCell.bikeImage.image
         dismiss(animated: true)
     }
 }

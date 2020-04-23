@@ -22,19 +22,17 @@ class BrandEditorViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
+        configureNavBar(title: "Edit Brand Info") {
+            let navSaveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.tapSaveButton))
+            self.navigationItem.rightBarButtonItem = navSaveButton
+        }
+        registerCells([.editorImageCell, .editorPropertyCell])
         
         savedBrand.brandLogo = editableBrand.brandLogo
         savedBrand.propertyValues = editableBrand.propertyValues
     }
     
-    // MARK: - Navigation bar
-    
-    func configureNavigationBar() {
-        let navSaveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(tapSaveButton))
-        self.navigationItem.rightBarButtonItem = navSaveButton
-        self.navigationItem.title = "Edit Brand Info"
-    }
+    // MARK: - Navigation bar action
     
     @objc func tapSaveButton() {
         guard savedBrand.propertyValues[0] != "" else { showEmptyNameAlert(); return }
@@ -58,14 +56,14 @@ class BrandEditorViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BrandImageCell", for: indexPath) as? BrandImageCell else { return UITableViewCell() }
-            cell.brandImage.image = editableBrand.brandLogo
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorImageCell.cellIdentifier, for: indexPath) as? EditorImageCell else { return UITableViewCell() }
+            cell.cellImageView.image = editableBrand.brandLogo
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BrandEditorCell", for: indexPath) as? BrandEditorCell else { return UITableViewCell() }
-            cell.loadView(brand: editableBrand, index: (indexPath.row - 1) )
-            cell.brandPropertyText.delegate = self
-            cell.brandPropertyText.tag = (indexPath.row-1)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
+            //todo cell.loadView()
+            cell.propertyValueTextField.delegate = self
+            cell.propertyValueTextField.tag = (indexPath.row - 1)
             return cell
         }
     }
@@ -126,11 +124,11 @@ extension BrandEditorViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? BrandImageCell else { return }
-        imageCell.brandImage.image = info[.editedImage] as? UIImage
-        imageCell.brandImage.contentMode = .scaleAspectFill
+        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell else { return }
+//        imageCell.brandImage.image = info[.editedImage] as? UIImage
+//        imageCell.brandImage.contentMode = .scaleAspectFill
         
-        savedBrand.brandLogo = imageCell.brandImage.image
+//        savedBrand.brandLogo = imageCell.brandImage.image
         dismiss(animated: true)
     }
 }

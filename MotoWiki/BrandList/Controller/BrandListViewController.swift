@@ -20,7 +20,7 @@ class BrandListViewController: UITableViewController {
             self.navigationItem.leftBarButtonItem = navSwitchViewButton
             self.navigationItem.rightBarButtonItem = navAddButton
         }
-        registerCell(xibName: "BrandListCell", cellIdentifier: "brandListCell", viewController: .brandListVC)
+        registerCells([.brandListCell])
         setInitial(viewController: .brandListVC)
     }
     

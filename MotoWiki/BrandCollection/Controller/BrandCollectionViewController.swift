@@ -18,8 +18,7 @@ class BrandCollectionViewController: UICollectionViewController {
             self.navigationItem.leftBarButtonItem = navSwitchViewButton
             self.navigationItem.rightBarButtonItem = navAddButton
         }
-        self.navigationItem.title = "Brand Collection"
-        registerCell(xibName: "BrandCollectionCell", cellIdentifier: "brandCollectionCell", viewController: .brandCollectionVC)
+        registerCells([.brandCollectionCell])
         setInitial(viewController: .brandCollectionVC)
     }
     

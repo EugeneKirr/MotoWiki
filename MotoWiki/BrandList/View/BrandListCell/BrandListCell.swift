@@ -10,7 +10,7 @@ import UIKit
 
 class BrandListCell: UITableViewCell {
     
-    @IBOutlet weak var brandImage: UIImageView!
+    @IBOutlet weak var brandImageView: UIImageView!
     @IBOutlet weak var brandNameLabel: UILabel!
     @IBOutlet weak var brandOriginLabel: UILabel!
     
@@ -19,7 +19,7 @@ class BrandListCell: UITableViewCell {
 extension BrandListCell {
     
     func loadView(brand: Brand) {
-        brandImage.image = brand.brandLogo
+        brandImageView.image = brand.brandLogo
         brandNameLabel.text = "\(brand.propertyValues[0])"
         brandOriginLabel.text = "\(brand.propertyValues[1])"
     }

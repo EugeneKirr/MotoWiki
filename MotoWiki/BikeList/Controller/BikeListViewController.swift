@@ -24,6 +24,7 @@ class BikeListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        registerCells([.bikeListCell])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,13 +66,13 @@ class BikeListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeListCell", for: indexPath) as? BikeListCell else { return UITableViewCell() }
-        cell.loadView(bike: chosenBikes[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.bikeListCell.cellIdentifier, for: indexPath) as? BikeListCell else { return UITableViewCell() }
+        //cell.loadView(bike: chosenBikes[indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return 80
     }
     
     // MARK: - Table view delegate
