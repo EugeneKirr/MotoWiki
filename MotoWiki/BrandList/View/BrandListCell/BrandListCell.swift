@@ -19,9 +19,9 @@ class BrandListCell: UITableViewCell {
 extension BrandListCell {
     
     func loadView(brand: Brand) {
-        brandImageView.image = brand.brandLogo
-        brandNameLabel.text = "\(brand.propertyValues[0])"
-        brandOriginLabel.text = "\(brand.propertyValues[1])"
+        brandImageView.image = UIImage(named: brand.brandImageName)
+        brandNameLabel.text = brand.brandName
+        brandOriginLabel.text = brand.brandOrigin
     }
     
 }

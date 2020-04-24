@@ -14,3 +14,13 @@ class EditorPropertyCell: UITableViewCell {
     @IBOutlet weak var propertyValueTextField: UITextField!
     
 }
+
+extension EditorPropertyCell {
+    
+    func loadView(_ propertyName: String, _ propertyValue: String) {
+        propertyNameLabel.text = propertyName
+        propertyValueTextField.text = propertyValue
+        propertyValueTextField.autocapitalizationType = .words
+    }
+    
+}

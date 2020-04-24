@@ -10,7 +10,7 @@ import UIKit
 
 class BikeListViewController: UITableViewController {
     
-    var brandOfInterest = Brand.defaultBrand
+//    var brandOfInterest = Brand.defaultBrand
     
     var chosenBikes = [Bike]() {
         didSet {
@@ -30,7 +30,7 @@ class BikeListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         editableBikeIndex = nil
         BikeList.sortByName()
-        chosenBikes = BikeList.getBikes(for: brandOfInterest)
+//        chosenBikes = BikeList.getBikes(for: brandOfInterest)
         tableView.reloadData()
     }
     

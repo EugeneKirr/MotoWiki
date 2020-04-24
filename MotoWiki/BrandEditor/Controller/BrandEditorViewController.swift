@@ -8,17 +8,11 @@
 
 import UIKit
 
-protocol BrandEditorViewControllerDelegate: AnyObject {
-    func saveChanges(_ savedBrand: Brand)
-}
-
 class BrandEditorViewController: UITableViewController {
     
-    unowned var editableBrand = Brand.defaultBrand
+    private let brandManager = BrandManager()
     
-    private var savedBrand = Brand(brandLogo: nil, brandName: "", countryOfOrigin: "")
-    
-    weak var delegate: BrandEditorViewControllerDelegate?
+    var editableBrand = Brand(id: 0, brandImageName: "Default", brandName: "", brandOrigin: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +21,16 @@ class BrandEditorViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = navSaveButton
         }
         registerCells([.editorImageCell, .editorPropertyCell])
-        
-        savedBrand.brandLogo = editableBrand.brandLogo
-        savedBrand.propertyValues = editableBrand.propertyValues
+        guard editableBrand.id == 0 else { return }
+        editableBrand = brandManager.updateBrandWithNewID(editableBrand)
+        print(editableBrand.id)
     }
     
     // MARK: - Navigation bar action
     
     @objc func tapSaveButton() {
-        guard savedBrand.propertyValues[0] != "" else { showEmptyNameAlert(); return }
-        delegate?.saveChanges(savedBrand)
+        guard editableBrand.brandName != "" else { showEmptyNameAlert(); return }
+        brandManager.performDBActionWith(editableBrand, action: .addToDB)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -50,28 +44,33 @@ class BrandEditorViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (Brand.propertyCounter + 1)
+        return editableBrand.propertyLabels.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorImageCell.cellIdentifier, for: indexPath) as? EditorImageCell else { return UITableViewCell() }
-            cell.cellImageView.image = editableBrand.brandLogo
+            cell.cellImageView.image = UIImage(named: editableBrand.brandImageName)
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
-            //todo cell.loadView()
+            let propertyName = editableBrand.propertyLabels[indexPath.row]
+            let propertyLabel = editableBrand.propertyValues[indexPath.row]
+            cell.loadView(propertyName, propertyLabel)
+            
             cell.propertyValueTextField.delegate = self
-            cell.propertyValueTextField.tag = (indexPath.row - 1)
+            cell.propertyValueTextField.tag = indexPath.row
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let imageCellHeight: CGFloat = (tableView.bounds.height / 3)
+        let propertyCellHeight: CGFloat = (tableView.bounds.height - imageCellHeight) / 4
         switch indexPath.row {
-        case 0: return 200
-        default: return 85
+        case 0: return imageCellHeight
+        default: return propertyCellHeight
         }
     }
     
@@ -105,7 +104,7 @@ extension BrandEditorViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        savedBrand.propertyValues[textField.tag] = textField.text ?? "-"
+        editableBrand = brandManager.updateBrandProperty(brand: editableBrand, forIndex: textField.tag, byValue: textField.text ?? "")
     }
 
 }
@@ -124,7 +123,7 @@ extension BrandEditorViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell else { return }
+//        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell else { return }
 //        imageCell.brandImage.image = info[.editedImage] as? UIImage
 //        imageCell.brandImage.contentMode = .scaleAspectFill
         

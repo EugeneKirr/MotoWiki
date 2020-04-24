@@ -21,8 +21,8 @@ class BikeList {
     static func getBikes(for brandOfInterest: Brand) -> [Bike] {
         var chosenBikes = [Bike]()
         for bike in BikeList.content {
-            guard bike.propertyValues[0] == brandOfInterest.propertyValues[0] else { continue }
-            chosenBikes.append(bike)
+//            guard bike.propertyValues[0] == brandOfInterest.propertyValues[0] else { continue }
+//            chosenBikes.append(bike)
         }
         return chosenBikes
     }

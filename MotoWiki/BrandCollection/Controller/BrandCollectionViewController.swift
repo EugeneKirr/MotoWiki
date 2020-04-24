@@ -9,6 +9,12 @@
 import UIKit
 
 class BrandCollectionViewController: UICollectionViewController {
+    
+    private let brandManager = BrandManager()
+    
+    var currentBrandList: BrandList {
+        return brandManager.fetchBrandListFromDB(sortBy: .name)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +28,10 @@ class BrandCollectionViewController: UICollectionViewController {
         setInitial(viewController: .brandCollectionVC)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
+    }
+    
     // MARK: - Navigation bar actions
     
     @objc func tapSwitchViewButton() {
@@ -33,25 +43,19 @@ class BrandCollectionViewController: UICollectionViewController {
     }
     
     @objc func tapAddButton() {
-        initializeAndPush(viewController: .brandEditorVC) { (vc) in
-            guard let brandEditorVC = vc as? BrandEditorViewController else { return }
-            brandEditorVC.delegate = self
-        }
+        initializeAndPush(viewController: .brandEditorVC)
     }
     
 
     // MARK: - UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 21
+        return currentBrandList.brands.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brandCollectionCell", for: indexPath) as? BrandCollectionCell else { return UICollectionViewCell() }
-    
-        cell.backgroundColor = .systemYellow
-    
+        cell.loadView(brand: currentBrandList.brands[indexPath.row])
         return cell
     }
     
@@ -95,25 +99,9 @@ class BrandCollectionViewController: UICollectionViewController {
 extension BrandCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfCellsInRow = 3
+        let numberOfCellsInRow: Int = 3
         let cellSize = (collectionView.bounds.width / CGFloat(numberOfCellsInRow))
         return CGSize(width: cellSize, height: cellSize)
-    }
-    
-}
-
-// MARK: - BrandEditorViewController Delegate
-
-extension BrandCollectionViewController: BrandEditorViewControllerDelegate {
-    
-    func saveChanges(_ savedBrand: Brand) {
-//        guard let index = editableBrandIndex else {
-//            BrandList.content.append(savedBrand)
-//            BrandList.sortByName()
-//            return
-//        }
-//        BrandList.content[index] = savedBrand
-//        BrandList.sortByName()
     }
     
 }
