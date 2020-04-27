@@ -12,7 +12,7 @@ class BrandEditorViewController: UITableViewController {
     
     private let brandManager = BrandManager()
     
-    var editableBrand = Brand(id: 0, brandImageName: "Default", brandName: "", brandOrigin: "")
+    var editableBrand = Brand(id: 0, image: UIImage(named: "DefaultBrand")!, propertyValues: ["", ""])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +23,15 @@ class BrandEditorViewController: UITableViewController {
         registerCells([.editorImageCell, .editorPropertyCell])
         guard editableBrand.id == 0 else { return }
         editableBrand = brandManager.updateBrandWithNewID(editableBrand)
-        print(editableBrand.id)
     }
     
     // MARK: - Navigation bar action
     
     @objc func tapSaveButton() {
-        guard editableBrand.brandName != "" else { showEmptyNameAlert(); return }
+        guard editableBrand.propertyValues[0] != "" else { showEmptyNameAlert(); return }
+        
         brandManager.performDBActionWith(editableBrand, action: .addToDB)
+        FileManager.default.createNewImageFile(in: .brands, image: editableBrand.image, imageName: "\(editableBrand.id).png")
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -44,23 +45,23 @@ class BrandEditorViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return editableBrand.propertyLabels.count
+        return editableBrand.propertyLabels.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorImageCell.cellIdentifier, for: indexPath) as? EditorImageCell else { return UITableViewCell() }
-            cell.cellImageView.image = UIImage(named: editableBrand.brandImageName)
+            cell.cellImageView.image = editableBrand.image
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
-            let propertyName = editableBrand.propertyLabels[indexPath.row]
-            let propertyLabel = editableBrand.propertyValues[indexPath.row]
+            let propertyName = editableBrand.propertyLabels[indexPath.row - 1]
+            let propertyLabel = editableBrand.propertyValues[indexPath.row - 1]
             cell.loadView(propertyName, propertyLabel)
             
             cell.propertyValueTextField.delegate = self
-            cell.propertyValueTextField.tag = indexPath.row
+            cell.propertyValueTextField.tag = (indexPath.row - 1)
             return cell
         }
     }
@@ -81,12 +82,16 @@ class BrandEditorViewController: UITableViewController {
         self.view.endEditing(true)
         switch indexPath.row {
         case 0:
-            let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let photo = UIAlertAction(title: "Photo gallery", style: .default) { (_) in
-                self.showImagePicker(source: .photoLibrary)
+            let ac = UIAlertController(title: "Choose photo source", message: nil, preferredStyle: .actionSheet)
+            let photo = UIAlertAction(title: "Photo gallery", style: .default) { [weak self] (_) in
+                self?.showImagePicker(source: .photoLibrary)
+            }
+            let album = UIAlertAction(title: "Saved photos", style: .default) { [weak self] (_) in
+                self?.showImagePicker(source: .savedPhotosAlbum)
             }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             ac.addAction(photo)
+            ac.addAction(album)
             ac.addAction(cancel)
             present(ac, animated: true)
         default: return
@@ -123,11 +128,12 @@ extension BrandEditorViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell else { return }
-//        imageCell.brandImage.image = info[.editedImage] as? UIImage
-//        imageCell.brandImage.contentMode = .scaleAspectFill
-        
-//        savedBrand.brandLogo = imageCell.brandImage.image
+        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell,
+              let newImage = info[.editedImage] as? UIImage else { dismiss(animated: true); return }
+        imageCell.cellImageView.image = newImage
+        imageCell.cellImageView.contentMode = .scaleAspectFit
+        editableBrand = brandManager.updateBrandImage(brand: editableBrand, newImage)
+        FileManager.default.clearTmpFolder()
         dismiss(animated: true)
     }
 }

@@ -13,9 +13,9 @@ import RealmSwift
 class RealmObjectBrand: Object {
     
     dynamic var id = 0
-    dynamic var brandImageName = ""
-    dynamic var brandName = ""
-    dynamic var brandOrigin = ""
+    dynamic var imageName = ""
+    dynamic var name = ""
+    dynamic var origin = ""
     
     override static func primaryKey() -> String? {
         return "id"

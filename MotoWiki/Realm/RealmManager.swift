@@ -21,7 +21,6 @@ class RealmManager {
             let realm = try Realm()
             try realm.write {
                 realm.add(realmObject, update: .modified)
-                print("realm object has been added/updated")
             }
         } catch {
             print("realm add/update error")

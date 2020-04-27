@@ -11,38 +11,25 @@ import UIKit
 struct Brand {
     
     let id: Int
-    let brandImageName: String
-    let brandName: String
-    let brandOrigin: String
-    
-    let propertyLabels: [String] = ["Brand Image Name", "Brand Name", "Country of Origin"]
+    let image: UIImage
+    let propertyLabels: [String] = ["Brand Name", "Country of Origin"]
     let propertyValues: [String]
 }
 
 extension Brand {
     
-    init(id: Int, brandImageName: String, brandName: String, brandOrigin: String) {
+    init(id: Int, imageName: String, name: String, origin: String) {
         self.id = id
-        self.brandImageName = brandImageName
-        self.brandName = brandName
-        self.brandOrigin = brandOrigin
+        self.image = {
+            let imagePath = FileManager.default.getImagePath(in: .brands, imageName: imageName)
+            return UIImage(contentsOfFile: imagePath) ?? UIImage(named: "DefaultBrand")!
+        }()
         self.propertyValues = {
             var values = [String]()
-            values.append(contentsOf: [brandImageName, brandName, brandOrigin])
+            values.append(contentsOf: [name, origin])
             return values
         }()
     }
     
 }
 
-extension Brand {
-    
-    init(id: Int, propertyValues: [String]) {
-        self.id = id
-        self.brandImageName = propertyValues[0]
-        self.brandName = propertyValues[1]
-        self.brandOrigin = propertyValues[2]
-        self.propertyValues = propertyValues
-    }
-    
-}

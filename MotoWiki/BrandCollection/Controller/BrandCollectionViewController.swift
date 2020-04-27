@@ -46,7 +46,6 @@ class BrandCollectionViewController: UICollectionViewController {
         initializeAndPush(viewController: .brandEditorVC)
     }
     
-
     // MARK: - UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,12 +53,10 @@ class BrandCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brandCollectionCell", for: indexPath) as? BrandCollectionCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectViews.brandCollectionCell.cellIdentifier, for: indexPath) as? BrandCollectionCell else { return UICollectionViewCell() }
         cell.loadView(brand: currentBrandList.brands[indexPath.row])
         return cell
     }
-    
-    
 
     // MARK: - UICollectionViewDelegate
 

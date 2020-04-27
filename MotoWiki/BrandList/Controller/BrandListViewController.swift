@@ -53,7 +53,7 @@ class BrandListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "brandListCell", for: indexPath) as? BrandListCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.brandListCell.cellIdentifier, for: indexPath) as? BrandListCell else { return UITableViewCell() }
         cell.loadView(brand: currentBrandList.brands[indexPath.row])
         return cell
     }
@@ -66,21 +66,20 @@ class BrandListViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let bikeListVC = UIStoryboard(name: "BikeList", bundle: nil).instantiateViewController(withIdentifier: "bikeListVC") as? BikeListViewController else { return }
-        
-//        bikeListVC.brandOfInterest = BrandList.content[indexPath.row]
-        
-        self.navigationController?.pushViewController(bikeListVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        initializeAndPush(viewController: .bikeListVC) { (vc) in
+            // TODO
+        }
     }
     
     // MARK: - Swipe actions
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
-            guard let brandEditorVC = UIStoryboard(name: "BrandEditor", bundle: nil).instantiateViewController(withIdentifier: "brandEditorVC") as? BrandEditorViewController else { return }
-            brandEditorVC.editableBrand = self.currentBrandList.brands[indexPath.row]
-            self.navigationController?.pushViewController(brandEditorVC, animated: true)
+            self.initializeAndPush(viewController: .brandEditorVC) { [weak self] (vc) in
+                guard let self = self, let brandEditorVC = vc as? BrandEditorViewController else { return }
+                brandEditorVC.editableBrand = self.currentBrandList.brands[indexPath.row]
+            }
         }
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
             self.showDeleteAlert(indexPath)
@@ -94,6 +93,7 @@ class BrandListViewController: UITableViewController {
             guard let self = self else { return }
             let deletedBrand = self.currentBrandList.brands[indexPath.row]
             self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)
+            FileManager.default.deleteImageFile(in: .brands, imageName: "\(deletedBrand.propertyValues[0]).png")
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
         let no = UIAlertAction(title: "No", style: .default, handler: nil)
