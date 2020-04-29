@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="editorPropertyCell" rowHeight="80" id="4rm-xI-4nz" customClass="EditorPropertyCell" customModule="MotoWiki" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4rm-xI-4nz" id="QMH-lq-6li">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA6-fg-dB7">
+                        <rect key="frame" x="16" y="0.0" width="116" height="80"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="-" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9d-Di-5kH">
+                        <rect key="frame" x="132" y="0.0" width="172" height="80"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OA6-fg-dB7" secondAttribute="trailing" constant="100" id="3g4-k6-NSw"/>
+                    <constraint firstItem="OA6-fg-dB7" firstAttribute="leading" secondItem="QMH-lq-6li" secondAttribute="leading" constant="16" id="4dK-mn-QIr"/>
+                    <constraint firstItem="OA6-fg-dB7" firstAttribute="top" secondItem="QMH-lq-6li" secondAttribute="top" id="BeK-BZ-SyM"/>
+                    <constraint firstAttribute="bottom" secondItem="OA6-fg-dB7" secondAttribute="bottom" id="Ytv-lc-HYt"/>
+                    <constraint firstAttribute="bottom" secondItem="P9d-Di-5kH" secondAttribute="bottom" id="ZcQ-2c-msk"/>
+                    <constraint firstAttribute="trailing" secondItem="P9d-Di-5kH" secondAttribute="trailing" constant="16" id="aCe-o7-b5P"/>
+                    <constraint firstItem="P9d-Di-5kH" firstAttribute="top" secondItem="QMH-lq-6li" secondAttribute="top" id="crO-oU-7SH"/>
+                    <constraint firstItem="P9d-Di-5kH" firstAttribute="leading" secondItem="OA6-fg-dB7" secondAttribute="trailing" id="dvf-Nm-9H9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="propertyNameLabel" destination="OA6-fg-dB7" id="1ZS-4G-RKg"/>
+                <outlet property="propertyValueTextField" destination="P9d-Di-5kH" id="LR0-5R-WkI"/>
+            </connections>
+            <point key="canvasLocation" x="2.8985507246376816" y="67.633928571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

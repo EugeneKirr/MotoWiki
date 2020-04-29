@@ -10,58 +10,63 @@ import UIKit
 
 class BikeViewerViewController: UITableViewController {
     
-    var chosenBike = Bike.defaultBike
-    var chosenBikeIndex: Int?
+    private let bikeManager = BikeManager()
+    
+    var bikeID = 0
+    
+    private var bikeOfInterest: Bike {
+        return bikeManager.fetchBikeFromDB(with: bikeID)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
+        configureNavBar(title: "Bike Details") {
+            let navAddButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.tapEditButton) )
+            self.navigationItem.rightBarButtonItem = navAddButton
+        }
+        registerCells([.editorImageCell, .editorPropertyCell])
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
-    // MARK: - Navigation bar
-    
-    func configureNavigationBar() {
-        let navEditButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapEditButton) )
-        self.navigationItem.rightBarButtonItem = navEditButton
-        self.navigationItem.title = "Bike Details"
-    }
-    
+    // MARK: - Navigation bar actions
+
     @objc func tapEditButton(_ sender: UIBarButtonItem) {
-        guard let bikeEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BikeEditorVC") as? BikeEditorViewController else { return }
-        bikeEditorVC.editableBike = chosenBike
-        bikeEditorVC.delegate = self
-        self.navigationController?.pushViewController(bikeEditorVC, animated: true)
+        initializeAndPush(viewController: .bikeEditorVC) { [weak self] (vc) in
+            guard let self = self, let bikeEditorVC = vc as? BikeEditorViewController else { return }
+            bikeEditorVC.editableBike = self.bikeOfInterest
+        }
     }
 
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (Bike.propertyCounter + 1)
+        return bikeOfInterest.propertyLabels.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeViewerImageCell", for: indexPath) as? BikeViewerImageCell else { return UITableViewCell() }
-            cell.bikeImage.image = chosenBike.bikeImage
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorImageCell.cellIdentifier, for: indexPath) as? EditorImageCell else { return UITableViewCell() }
+            cell.cellImageView.image = bikeOfInterest.image
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeViewerCell", for: indexPath) as? BikeViewerCell else { return UITableViewCell() }
-            cell.loadView(bike: chosenBike, index: (indexPath.row - 1) )
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
+            
+            let propertyName = bikeOfInterest.propertyLabels[indexPath.row - 1]
+            let propertyLabel = bikeOfInterest.propertyValues[indexPath.row - 1]
+            cell.loadView(propertyName, propertyLabel)
+            cell.propertyValueTextField.isUserInteractionEnabled = false
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
-        case 0:
-            return 200
-        default:
-            return 85
+        case 0: return calculateRowHeight(occupiedFractionOfTableHeight: 0.33)
+        default: return calculateRowHeight(occupiedFractionOfTableHeight: 0.125)
         }
     }
     
@@ -72,17 +77,3 @@ class BikeViewerViewController: UITableViewController {
     }
     
 }
-
-// MARK: - BikeEditorViewController Delegate
-
-extension BikeViewerViewController: BikeEditorViewControllerDelegate {
-    
-    func saveChanges(_ savedBike: Bike) {
-        guard let index = chosenBikeIndex else { return }
-        chosenBike = savedBike
-        BikeList.content[index] = savedBike
-    }
-    
-}
-
-

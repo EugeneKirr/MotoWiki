@@ -10,27 +10,30 @@ import UIKit
 
 class BikeListViewController: UITableViewController {
     
-    var brandOfInterest = Brand.defaultBrand
+    private let bikeManager = BikeManager()
     
-    var chosenBikes = [Bike]() {
-        didSet {
-            guard chosenBikes.count == 0 else { return }
-            showEmptyAlert()
-        }
+    var brandOfInterest = Brand()
+    
+    private var currentBikeList: [Bike] {
+        return bikeManager.fetchBikeListFromDB(with: brandOfInterest, sortBy: .name)
     }
-    
-    var editableBikeIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
+        configureNavBar(title: brandOfInterest.propertyValues[0]) {
+            let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.tapAddButton) )
+            self.navigationItem.rightBarButtonItem = navAddButton
+        }
+        registerCells([.bikeListCell])
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        editableBikeIndex = nil
-        BikeList.sortByName()
-        chosenBikes = BikeList.getBikes(for: brandOfInterest)
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        guard currentBikeList.count == 0 else { return }
+        showEmptyAlert()
     }
     
     func showEmptyAlert() {
@@ -44,91 +47,61 @@ class BikeListViewController: UITableViewController {
         present(ac, animated: true, completion: nil)
     }
     
-    // MARK: - Navigation bar
-    
-    func configureNavigationBar() {
-        let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapAddButton) )
-        self.navigationItem.rightBarButtonItem = navAddButton
-        self.navigationItem.title = "Bike List"
-    }
+    // MARK: - Navigation bar actions
     
     @objc func tapAddButton() {
-        guard let bikeEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BikeEditorVC") as? BikeEditorViewController else { return }
-        bikeEditorVC.delegate = self
-        self.navigationController?.pushViewController(bikeEditorVC, animated: true)
+        initializeAndPush(viewController: .bikeEditorVC) { [weak self] (vc) in
+            guard let self = self, let bikeEditorVC = vc as? BikeEditorViewController else { return }
+            bikeEditorVC.editableBike = Bike(self.brandOfInterest)
+        }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chosenBikes.count
+        return currentBikeList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BikeListCell", for: indexPath) as? BikeListCell else { return UITableViewCell() }
-        cell.loadView(bike: chosenBikes[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.bikeListCell.cellIdentifier, for: indexPath) as? BikeListCell else { return UITableViewCell() }
+        cell.loadView(bike: currentBikeList[indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return calculateRowHeight(occupiedFractionOfTableHeight: 0.125)
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let bikeViewerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BikeViewerVC") as? BikeViewerViewController else { return }
-        bikeViewerVC.chosenBike = chosenBikes[indexPath.row]
-        bikeViewerVC.chosenBikeIndex = BikeList.getIndex(for: chosenBikes[indexPath.row])
-        
-        self.navigationController?.pushViewController(bikeViewerVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        initializeAndPush(viewController: .bikeViewerVC) { [weak self] (vc) in
+            guard let self = self, let bikeViewerVC = vc as? BikeViewerViewController else { return }
+            bikeViewerVC.bikeID = self.currentBikeList[indexPath.row].id
+        }
     }
     
-    // MARK: - Swipe Actions
-    
+    // MARK: - Swipe actions
+        
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    
         let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
-            guard let bikeEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BikeEditorVC") as? BikeEditorViewController else { return }
-            bikeEditorVC.editableBike = self.chosenBikes[indexPath.row]
-            bikeEditorVC.delegate = self
-            
-            self.editableBikeIndex = BikeList.getIndex(for: self.chosenBikes[indexPath.row])
-            self.navigationController?.pushViewController(bikeEditorVC, animated: true)
+            self.initializeAndPush(viewController: .bikeEditorVC) { [weak self] (vc) in
+                guard let self = self, let bikeEditorVC = vc as? BikeEditorViewController else { return }
+                bikeEditorVC.editableBike = self.currentBikeList[indexPath.row]
+            }
         }
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
-            self.showDeleteAlert(indexPath)
+            self.showDeleteAlert(indexPath) { [weak self] (_) in
+                guard let self = self else { return }
+                let deletedBike = self.currentBikeList[indexPath.row]
+                self.bikeManager.performDBActionWith(deletedBike, action: .deleteFromDB)
+                FileManager.default.deleteImageFile(in: .bikes, imageName: "\(deletedBike.id).png")
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
         return UISwipeActionsConfiguration(actions: [edit, delete])
     }
-    
-    func showDeleteAlert(_ indexPath: IndexPath) {
-        let ac = UIAlertController(title: "Warning", message: "Delete this bike?", preferredStyle: .alert)
-        let yes = UIAlertAction(title: "Yes", style: .destructive) { (_) in
-            let deletedBike = self.chosenBikes.remove(at: indexPath.row)
-            BikeList.remove(deletedBike)
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-        let no = UIAlertAction(title: "No", style: .default, handler: nil)
-        ac.addAction(yes)
-        ac.addAction(no)
-        present(ac, animated: true)
-    }    
+        
 }
 
-
-// MARK: - BikeEditorViewController Delegate
-
-extension BikeListViewController: BikeEditorViewControllerDelegate {
-    
-    func saveChanges(_ savedBike: Bike) {
-        guard let index = editableBikeIndex else {
-            BikeList.content.append(savedBike)
-            BikeList.sortByName()
-            return
-        }
-        BikeList.content[index] = savedBike
-    }
-
-}

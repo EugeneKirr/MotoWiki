@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="brandListCell" rowHeight="80" id="Njf-iu-dgY" customClass="BrandListCell" customModule="MotoWiki" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Njf-iu-dgY" id="2Tm-sR-ru0">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultBrand" translatesAutoresizingMaskIntoConstraints="NO" id="I3T-er-KGe">
+                        <rect key="frame" x="8" y="8" width="80" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="M9b-rH-jNw"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MFL-2Y-Hb2">
+                        <rect key="frame" x="284" y="2" width="20" height="76.5"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="OVV-ET-IfW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8S-2W-6Cd">
+                        <rect key="frame" x="96" y="12" width="180" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country of origin" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxC-9v-wOn">
+                        <rect key="frame" x="96" y="46" width="180" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="M8S-2W-6Cd" firstAttribute="leading" secondItem="I3T-er-KGe" secondAttribute="trailing" constant="8" id="10S-81-HOW"/>
+                    <constraint firstItem="dxC-9v-wOn" firstAttribute="centerY" secondItem="2Tm-sR-ru0" secondAttribute="centerY" constant="16" id="3k9-1o-QFC"/>
+                    <constraint firstItem="MFL-2Y-Hb2" firstAttribute="leading" secondItem="dxC-9v-wOn" secondAttribute="trailing" constant="8" id="7B4-4D-ROV"/>
+                    <constraint firstAttribute="trailing" secondItem="MFL-2Y-Hb2" secondAttribute="trailing" constant="16" id="ACB-BS-gXM"/>
+                    <constraint firstAttribute="bottom" secondItem="MFL-2Y-Hb2" secondAttribute="bottom" id="Eu0-Oo-0Ae"/>
+                    <constraint firstAttribute="bottom" secondItem="I3T-er-KGe" secondAttribute="bottom" constant="8" id="FM4-ko-Khj"/>
+                    <constraint firstItem="M8S-2W-6Cd" firstAttribute="centerY" secondItem="2Tm-sR-ru0" secondAttribute="centerY" constant="-16" id="LEU-BO-WIg"/>
+                    <constraint firstItem="MFL-2Y-Hb2" firstAttribute="top" secondItem="2Tm-sR-ru0" secondAttribute="top" id="SxW-Y7-WAB"/>
+                    <constraint firstItem="dxC-9v-wOn" firstAttribute="leading" secondItem="I3T-er-KGe" secondAttribute="trailing" constant="8" id="TF5-UM-dFq"/>
+                    <constraint firstItem="MFL-2Y-Hb2" firstAttribute="leading" secondItem="M8S-2W-6Cd" secondAttribute="trailing" constant="8" id="oSc-br-Qbt"/>
+                    <constraint firstItem="I3T-er-KGe" firstAttribute="leading" secondItem="2Tm-sR-ru0" secondAttribute="leading" constant="8" id="tq9-yG-9Iu"/>
+                    <constraint firstItem="I3T-er-KGe" firstAttribute="top" secondItem="2Tm-sR-ru0" secondAttribute="top" constant="8" id="wkJ-GE-zsE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="brandImageView" destination="I3T-er-KGe" id="ec3-OI-sbv"/>
+                <outlet property="brandNameLabel" destination="M8S-2W-6Cd" id="GUP-Z4-0xc"/>
+                <outlet property="brandOriginLabel" destination="dxC-9v-wOn" id="E1j-VQ-PnW"/>
+            </connections>
+            <point key="canvasLocation" x="-384.375" y="12.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="DefaultBrand" width="512" height="512"/>
+        <image name="chevron.right" catalog="system" width="48" height="64"/>
+    </resources>
+</document>

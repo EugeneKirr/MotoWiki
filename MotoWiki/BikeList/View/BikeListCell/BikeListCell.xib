@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bikeListCell" rowHeight="80" id="LEZ-2V-x27" customClass="BikeListCell" customModule="MotoWiki" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LEZ-2V-x27" id="KZH-W4-EV8">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bike Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-j0-tRw">
+                        <rect key="frame" x="120" y="12" width="156" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHh-Fc-uzL">
+                        <rect key="frame" x="120" y="45.5" width="156" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultBike" translatesAutoresizingMaskIntoConstraints="NO" id="UU6-mJ-ARW">
+                        <rect key="frame" x="0.0" y="0.0" width="112" height="80"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oVY-5h-2e6">
+                        <rect key="frame" x="284" y="2" width="20" height="76.5"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="Vl4-kq-6hB"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zxQ-j0-tRw" firstAttribute="centerY" secondItem="KZH-W4-EV8" secondAttribute="centerY" constant="-16" id="8Ig-hK-s42"/>
+                    <constraint firstItem="UU6-mJ-ARW" firstAttribute="leading" secondItem="KZH-W4-EV8" secondAttribute="leading" id="9yh-WC-2X2"/>
+                    <constraint firstItem="oVY-5h-2e6" firstAttribute="leading" secondItem="eHh-Fc-uzL" secondAttribute="trailing" constant="8" id="K2U-06-z4M"/>
+                    <constraint firstItem="UU6-mJ-ARW" firstAttribute="width" secondItem="KZH-W4-EV8" secondAttribute="width" multiplier="0.35" id="KxU-VJ-DGH"/>
+                    <constraint firstItem="UU6-mJ-ARW" firstAttribute="top" secondItem="KZH-W4-EV8" secondAttribute="top" id="NxJ-fy-XoX"/>
+                    <constraint firstAttribute="bottom" secondItem="UU6-mJ-ARW" secondAttribute="bottom" id="WLv-wj-pxI"/>
+                    <constraint firstItem="oVY-5h-2e6" firstAttribute="leading" secondItem="zxQ-j0-tRw" secondAttribute="trailing" constant="8" id="g9W-FW-yvG"/>
+                    <constraint firstItem="eHh-Fc-uzL" firstAttribute="leading" secondItem="UU6-mJ-ARW" secondAttribute="trailing" constant="8" id="mdY-m8-8K7"/>
+                    <constraint firstItem="oVY-5h-2e6" firstAttribute="top" secondItem="KZH-W4-EV8" secondAttribute="top" id="qxX-Yo-OCd"/>
+                    <constraint firstAttribute="trailing" secondItem="oVY-5h-2e6" secondAttribute="trailing" constant="16" id="uhH-x1-OJA"/>
+                    <constraint firstAttribute="bottom" secondItem="oVY-5h-2e6" secondAttribute="bottom" id="uzF-PU-3Bw"/>
+                    <constraint firstItem="zxQ-j0-tRw" firstAttribute="leading" secondItem="UU6-mJ-ARW" secondAttribute="trailing" constant="8" id="wd3-Ge-UnB"/>
+                    <constraint firstItem="eHh-Fc-uzL" firstAttribute="centerY" secondItem="KZH-W4-EV8" secondAttribute="centerY" constant="16" id="yzE-Uk-bSC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bikeImageView" destination="UU6-mJ-ARW" id="CdU-GB-pWo"/>
+                <outlet property="bikeNameLabel" destination="zxQ-j0-tRw" id="Y5o-il-NNl"/>
+                <outlet property="yearOfProductionLabel" destination="eHh-Fc-uzL" id="eKS-eW-kha"/>
+            </connections>
+            <point key="canvasLocation" x="31.875" y="95"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="DefaultBike" width="256" height="256"/>
+        <image name="chevron.right" catalog="system" width="32" height="32"/>
+    </resources>
+</document>

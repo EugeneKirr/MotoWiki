@@ -10,100 +10,87 @@ import UIKit
 
 class BrandListViewController: UITableViewController {
     
-    var editableBrandIndex: Int?
+    private let brandManager = BrandManager()
+    
+    var currentBrandList: [Brand] {
+        return brandManager.fetchBrandListFromDB(sortBy: .name)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
+        configureNavBar(title: "Brand List") {
+            let navSwitchViewButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(self.tapSwitchViewButton))
+            let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.tapAddButton) )
+            self.navigationItem.leftBarButtonItem = navSwitchViewButton
+            self.navigationItem.rightBarButtonItem = navAddButton
+        }
+        registerCells([.brandListCell])
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        editableBrandIndex = nil
+        setInitial(viewController: .brandListVC)
         tableView.reloadData()
     }
     
-    // MARK: - Navigation bar
+    // MARK: - Navigation bar actions
     
-    func configureNavigationBar() {
-        let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapAddButton) )
-        self.navigationItem.rightBarButtonItem = navAddButton
-        self.navigationItem.title = "Brand List"
+    @objc func tapSwitchViewButton() {
+        guard self.navigationController?.children.count == 1 else {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        initializeAndPush(viewController: .brandCollectionVC)
     }
     
     @objc func tapAddButton() {
-        guard let brandEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BrandEditorVC") as? BrandEditorViewController else { return }
-        brandEditorVC.delegate = self
-        self.navigationController?.pushViewController(brandEditorVC, animated: true)
+        initializeAndPush(viewController: .brandEditorVC)
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BrandList.content.count
+        return currentBrandList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BrandListCell", for: indexPath) as? BrandListCell else { return UITableViewCell() }
-        cell.loadView(brand: BrandList.content[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.brandListCell.cellIdentifier, for: indexPath) as? BrandListCell else { return UITableViewCell() }
+        cell.loadView(brand: currentBrandList[indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return calculateRowHeight(occupiedFractionOfTableHeight: 0.125)
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let bikeListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BikeListVC") as? BikeListViewController else { return }
-        bikeListVC.brandOfInterest = BrandList.content[indexPath.row]
-        self.navigationController?.pushViewController(bikeListVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        initializeAndPush(viewController: .bikeListVC) { [weak self] (vc) in
+            guard let self = self, let bikeListVC = vc as? BikeListViewController else { return }
+            bikeListVC.brandOfInterest = self.currentBrandList[indexPath.row]
+        }
     }
     
     // MARK: - Swipe actions
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
-            guard let brandEditorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BrandEditorVC") as? BrandEditorViewController else { return }
-            brandEditorVC.editableBrand = BrandList.content[indexPath.row]
-            brandEditorVC.delegate = self
-            
-            self.editableBrandIndex = indexPath.row
-            self.navigationController?.pushViewController(brandEditorVC, animated: true)
+            self.initializeAndPush(viewController: .brandEditorVC) { [weak self] (vc) in
+                guard let self = self, let brandEditorVC = vc as? BrandEditorViewController else { return }
+                brandEditorVC.editableBrand = self.currentBrandList[indexPath.row]
+            }
         }
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
-            self.showDeleteAlert(indexPath)
+            self.showDeleteAlert(indexPath) { [weak self] (_) in
+                guard let self = self else { return }
+                let deletedBrand = self.currentBrandList[indexPath.row]
+                self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)
+                FileManager.default.deleteImageFile(in: .brands, imageName: "\(deletedBrand.id).png")
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
         return UISwipeActionsConfiguration(actions: [edit, delete])
     }
-    
-    func showDeleteAlert(_ indexPath: IndexPath) {
-        let ac = UIAlertController(title: "Warning", message: "Delete this brand?", preferredStyle: .alert)
-        let yes = UIAlertAction(title: "Yes", style: .destructive) { (_) in
-            BrandList.content.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-        let no = UIAlertAction(title: "No", style: .default, handler: nil)
-        ac.addAction(yes)
-        ac.addAction(no)
-        present(ac, animated: true)
-    }
+
 }
-
-// MARK: - BrandEditorViewController Delegate
-
-extension BrandListViewController: BrandEditorViewControllerDelegate {
-    
-    func saveChanges(_ savedBrand: Brand) {
-        guard let index = editableBrandIndex else {
-            BrandList.content.append(savedBrand)
-            BrandList.sortByName()
-            return
-        }
-        BrandList.content[index] = savedBrand
-        BrandList.sortByName()
-    }
-    
-}
-
