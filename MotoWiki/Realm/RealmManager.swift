@@ -45,7 +45,6 @@ class RealmManager {
                 guard let primatyKeyValue = realmObject.value(forKey: primaryKey) else { print ("no value for primary key"); return }
                 guard let fetchedObject = realm.object(ofType: R.self, forPrimaryKey: primatyKeyValue) else { print("error"); return }
                 realm.delete(fetchedObject)
-                print("realm object has been deleted")
             }
         } catch {
             print("realm delete error")

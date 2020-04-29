@@ -13,14 +13,17 @@ class BrandManager {
     
     private let realmManager = RealmManager()
     
+    enum SortByProperty {
+        case id
+        case name
+        case origin
+    }
+    
     func fetchBrandListFromDB(sortBy: SortByProperty) -> BrandList {
         var fetchedBrands = [Brand]()
         realmManager.fetchFromDB { (brandObjects: Results<RealmObjectBrand>) in
             for object in brandObjects {
-                let brand = Brand(id: object.id,
-                                  imageName: object.imageName,
-                                  name: object.name,
-                                  origin: object.origin)
+                let brand = Brand(object)
                 fetchedBrands.append(brand)
             }
         }
@@ -30,7 +33,6 @@ class BrandManager {
             case .name: return firstBrand.propertyValues[0] < secondBrand.propertyValues[0]
             case .origin: return firstBrand.propertyValues[1] < secondBrand.propertyValues[1]
             }
-            
         }
 //        realmManager.printRealmURL()
         return BrandList(brands: fetchedBrands)

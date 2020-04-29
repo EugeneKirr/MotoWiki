@@ -67,8 +67,9 @@ class BrandListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        initializeAndPush(viewController: .bikeListVC) { (vc) in
-            // TODO
+        initializeAndPush(viewController: .bikeListVC) { [weak self] (vc) in
+            guard let self = self, let bikeListVC = vc as? BikeListViewController else { return }
+            bikeListVC.brandOfInterest = self.currentBrandList.brands[indexPath.row]
         }
     }
     
@@ -93,7 +94,7 @@ class BrandListViewController: UITableViewController {
             guard let self = self else { return }
             let deletedBrand = self.currentBrandList.brands[indexPath.row]
             self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)
-            FileManager.default.deleteImageFile(in: .brands, imageName: "\(deletedBrand.propertyValues[0]).png")
+            FileManager.default.deleteImageFile(in: .brands, imageName: "\(deletedBrand.id).png")
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
         let no = UIAlertAction(title: "No", style: .default, handler: nil)

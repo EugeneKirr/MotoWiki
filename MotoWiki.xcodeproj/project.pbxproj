@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B119C5224581DB400259D0E /* RealmObjectBike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B119C5124581DB400259D0E /* RealmObjectBike.swift */; };
 		0B1BB07A245032340075888A /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BB079245032340075888A /* UIViewControllerExtensions.swift */; };
 		0B1BB082245039060075888A /* BrandCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B1BB081245039060075888A /* BrandCollection.storyboard */; };
 		0B1BB085245039A70075888A /* BrandCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BB084245039A70075888A /* BrandCollectionCell.swift */; };
@@ -38,22 +39,21 @@
 		0B3D8C1E244F610A00273067 /* BrandListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3D8C1D244F610A00273067 /* BrandListCell.xib */; };
 		0B490D8F2456CEE1000142D6 /* FMPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B490D8E2456CEE1000142D6 /* FMPaths.swift */; };
 		0B490D912457080D000142D6 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B490D902457080D000142D6 /* FileManagerExtensions.swift */; };
-		0B491AB62402D2F900B321D4 /* EngineTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */; };
 		0B6BDD662407AFAB009D28D3 /* BikeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */; };
-		0B8FC0F62402FE1900C98C07 /* PurposeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FC0F52402FE1900C98C07 /* PurposeModel.swift */; };
 		0B8FC0F82403000F00C98C07 /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FC0F72403000F00C98C07 /* Bike.swift */; };
 		0B906F0E242DF0EC00AA9713 /* BrandList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B906F0D242DF0EC00AA9713 /* BrandList.swift */; };
 		0BA3D87F240CEF8B0095B469 /* BrandEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */; };
+		0BA616A62458353900758344 /* BikeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA616A52458353900758344 /* BikeManager.swift */; };
 		0BE44F6F2451892800CB085C /* BrandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE44F6E2451892800CB085C /* BrandManager.swift */; };
 		0BE44F712451BF0E00CB085C /* RealmObjectBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE44F702451BF0E00CB085C /* RealmObjectBrand.swift */; };
 		0BE44F762451F5EA00CB085C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE44F752451F5EA00CB085C /* RealmManager.swift */; };
 		0BE44F782452E9BF00CB085C /* DBActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE44F772452E9BF00CB085C /* DBActions.swift */; };
-		0BE44F7A2453059D00CB085C /* SortByProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE44F792453059D00CB085C /* SortByProperty.swift */; };
 		0BF80E9E24309F7900DDE4D3 /* BikeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF80E9D24309F7900DDE4D3 /* BikeList.swift */; };
 		50D7EC20255502A9B7991E58 /* Pods_MotoWiki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A5761093767AE8E0E49836 /* Pods_MotoWiki.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B119C5124581DB400259D0E /* RealmObjectBike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmObjectBike.swift; sourceTree = "<group>"; };
 		0B1BB079245032340075888A /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		0B1BB081245039060075888A /* BrandCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BrandCollection.storyboard; sourceTree = "<group>"; };
 		0B1BB084245039A70075888A /* BrandCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionCell.swift; sourceTree = "<group>"; };
@@ -87,17 +87,15 @@
 		0B3D8C1D244F610A00273067 /* BrandListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandListCell.xib; sourceTree = "<group>"; };
 		0B490D8E2456CEE1000142D6 /* FMPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMPaths.swift; sourceTree = "<group>"; };
 		0B490D902457080D000142D6 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
-		0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTypeModel.swift; sourceTree = "<group>"; };
 		0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeEditorViewController.swift; sourceTree = "<group>"; };
-		0B8FC0F52402FE1900C98C07 /* PurposeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeModel.swift; sourceTree = "<group>"; };
 		0B8FC0F72403000F00C98C07 /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
 		0B906F0D242DF0EC00AA9713 /* BrandList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandList.swift; sourceTree = "<group>"; };
 		0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandEditorViewController.swift; sourceTree = "<group>"; };
+		0BA616A52458353900758344 /* BikeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeManager.swift; sourceTree = "<group>"; };
 		0BE44F6E2451892800CB085C /* BrandManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandManager.swift; sourceTree = "<group>"; };
 		0BE44F702451BF0E00CB085C /* RealmObjectBrand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmObjectBrand.swift; sourceTree = "<group>"; };
 		0BE44F752451F5EA00CB085C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0BE44F772452E9BF00CB085C /* DBActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBActions.swift; sourceTree = "<group>"; };
-		0BE44F792453059D00CB085C /* SortByProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortByProperty.swift; sourceTree = "<group>"; };
 		0BF80E9D24309F7900DDE4D3 /* BikeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeList.swift; sourceTree = "<group>"; };
 		68244DB6E1733E6FA0DF7C70 /* Pods-MotoWiki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoWiki.debug.xcconfig"; path = "Target Support Files/Pods-MotoWiki/Pods-MotoWiki.debug.xcconfig"; sourceTree = "<group>"; };
 		6E6EA4D2B2DA72CEA2D61183 /* Pods-MotoWiki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MotoWiki.release.xcconfig"; path = "Target Support Files/Pods-MotoWiki/Pods-MotoWiki.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		0B161EA3240688310074105E /* BikeEditor */ = {
 			isa = PBXGroup;
 			children = (
-				0B51F730240FE0DA004D434A /* Model */,
 				0B51F72F240FE0D5004D434A /* View */,
 				0B51F72E240FE0CD004D434A /* Controller */,
 			);
@@ -268,7 +265,6 @@
 				0B1BB08C245053F60075888A /* ProjectViewControllers.swift */,
 				0B31FD7C2450BABD00F5114B /* ProjectViews.swift */,
 				0BE44F772452E9BF00CB085C /* DBActions.swift */,
-				0BE44F792453059D00CB085C /* SortByProperty.swift */,
 				0B490D8E2456CEE1000142D6 /* FMPaths.swift */,
 				0B1BB08A24504CA20075888A /* UDKeys.swift */,
 			);
@@ -311,7 +307,9 @@
 		0B51F72D240FCC1C004D434A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B8FC0F72403000F00C98C07 /* Bike.swift */,
 				0BF80E9D24309F7900DDE4D3 /* BikeList.swift */,
+				0BA616A52458353900758344 /* BikeManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,16 +328,6 @@
 				0B3D8C18244F5A0900273067 /* BikeEditor.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		0B51F730240FE0DA004D434A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0B8FC0F72403000F00C98C07 /* Bike.swift */,
-				0B491AB52402D2F900B321D4 /* EngineTypeModel.swift */,
-				0B8FC0F52402FE1900C98C07 /* PurposeModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		0B51F732240FE310004D434A /* BikeViewer */ = {
@@ -437,6 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				0BE44F702451BF0E00CB085C /* RealmObjectBrand.swift */,
+				0B119C5124581DB400259D0E /* RealmObjectBike.swift */,
 				0BE44F752451F5EA00CB085C /* RealmManager.swift */,
 			);
 			path = Realm;
@@ -575,9 +564,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA616A62458353900758344 /* BikeManager.swift in Sources */,
 				0B1BB089245043460075888A /* BrandCollectionViewController.swift in Sources */,
 				0B31FD7D2450BABD00F5114B /* ProjectViews.swift in Sources */,
-				0B8FC0F62402FE1900C98C07 /* PurposeModel.swift in Sources */,
 				0BA3D87F240CEF8B0095B469 /* BrandEditorViewController.swift in Sources */,
 				0B6BDD662407AFAB009D28D3 /* BikeEditorViewController.swift in Sources */,
 				0B1DCD3324030299001DF0AB /* Brand.swift in Sources */,
@@ -586,6 +575,7 @@
 				0B1BB08B24504CA20075888A /* UDKeys.swift in Sources */,
 				0B1BB085245039A70075888A /* BrandCollectionCell.swift in Sources */,
 				0B3549492410E37D00780687 /* BikeViewerViewController.swift in Sources */,
+				0B119C5224581DB400259D0E /* RealmObjectBike.swift in Sources */,
 				0B35BF742401436600D0495D /* BikeListViewController.swift in Sources */,
 				0B35BF6E240137C900D0495D /* BrandListViewController.swift in Sources */,
 				0BE44F762451F5EA00CB085C /* RealmManager.swift in Sources */,
@@ -596,11 +586,9 @@
 				0B8FC0F82403000F00C98C07 /* Bike.swift in Sources */,
 				0B31FD742450B1BC00F5114B /* EditorPropertyCell.swift in Sources */,
 				0B31FD792450B55E00F5114B /* EditorImageCell.swift in Sources */,
-				0B491AB62402D2F900B321D4 /* EngineTypeModel.swift in Sources */,
 				0BE44F712451BF0E00CB085C /* RealmObjectBrand.swift in Sources */,
 				0B490D912457080D000142D6 /* FileManagerExtensions.swift in Sources */,
 				0B35BF70240139D400D0495D /* BrandListCell.swift in Sources */,
-				0BE44F7A2453059D00CB085C /* SortByProperty.swift in Sources */,
 				0B35BF722401434700D0495D /* BikeListCell.swift in Sources */,
 				0B2D0F6A2400422400815D22 /* AppDelegate.swift in Sources */,
 				0B2D0F6C2400422400815D22 /* SceneDelegate.swift in Sources */,

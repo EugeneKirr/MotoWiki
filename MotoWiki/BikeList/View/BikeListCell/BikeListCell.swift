@@ -12,14 +12,15 @@ class BikeListCell: UITableViewCell {
 
     @IBOutlet weak var bikeImageView: UIImageView!
     @IBOutlet weak var bikeNameLabel: UILabel!
-
+    @IBOutlet weak var yearOfProductionLabel: UILabel!
 }
 
 extension BikeListCell {
     
-//    func loadView(bike: Bike) {
-//        bikeImage.image = bike.bikeImage
-//        bikeName.text = "\(bike.propertyValues[0]) \(bike.propertyValues[1])"
-//    }
+    func loadView(bike: Bike) {
+        bikeImageView.image = bike.image
+        bikeNameLabel.text = bike.propertyValues[2]
+        yearOfProductionLabel.text = bike.propertyValues[4]
+    }
     
 }

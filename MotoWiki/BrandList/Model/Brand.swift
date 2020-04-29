@@ -18,17 +18,27 @@ struct Brand {
 
 extension Brand {
     
-    init(id: Int, imageName: String, name: String, origin: String) {
-        self.id = id
+    init(_ realmBrand: RealmObjectBrand) {
+        self.id = realmBrand.id
         self.image = {
-            let imagePath = FileManager.default.getImagePath(in: .brands, imageName: imageName)
+            let imagePath = FileManager.default.getImagePath(in: .brands, imageName: realmBrand.imageName)
             return UIImage(contentsOfFile: imagePath) ?? UIImage(named: "DefaultBrand")!
         }()
         self.propertyValues = {
             var values = [String]()
-            values.append(contentsOf: [name, origin])
+            values.append(contentsOf: [realmBrand.name, realmBrand.origin])
             return values
         }()
+    }
+    
+}
+
+extension Brand {
+    
+    init() {
+        self.id = 0
+        self.image = UIImage(named: "DefaultBrand")!
+        self.propertyValues = [String](repeating: "", count: 2)
     }
     
 }

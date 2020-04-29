@@ -12,7 +12,7 @@ class BrandEditorViewController: UITableViewController {
     
     private let brandManager = BrandManager()
     
-    var editableBrand = Brand(id: 0, image: UIImage(named: "DefaultBrand")!, propertyValues: ["", ""])
+    var editableBrand = Brand()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class BrandEditorViewController: UITableViewController {
     
     @objc func tapSaveButton() {
         guard editableBrand.propertyValues[0] != "" else { showEmptyNameAlert(); return }
-        
+
         brandManager.performDBActionWith(editableBrand, action: .addToDB)
         FileManager.default.createNewImageFile(in: .brands, image: editableBrand.image, imageName: "\(editableBrand.id).png")
         self.navigationController?.popViewController(animated: true)
@@ -119,7 +119,8 @@ extension BrandEditorViewController: UITextFieldDelegate {
 extension BrandEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func showImagePicker(source: UIImagePickerController.SourceType) {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary),
+              UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source
