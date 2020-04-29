@@ -16,7 +16,7 @@ class BrandEditorViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar(title: "Edit Brand Info") {
+        configureNavBar(title: "Edit Brand Details") {
             let navSaveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.tapSaveButton))
             self.navigationItem.rightBarButtonItem = navSaveButton
         }
@@ -29,17 +29,9 @@ class BrandEditorViewController: UITableViewController {
     
     @objc func tapSaveButton() {
         guard editableBrand.propertyValues[0] != "" else { showEmptyNameAlert(); return }
-
         brandManager.performDBActionWith(editableBrand, action: .addToDB)
         FileManager.default.createNewImageFile(in: .brands, image: editableBrand.image, imageName: "\(editableBrand.id).png")
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showEmptyNameAlert() {
-        let ac = UIAlertController(title: "Can't save", message: "Brand name should be filled", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        ac.addAction(ok)
-        present(ac, animated: true)
     }
     
     // MARK: - Table view data source
@@ -56,6 +48,7 @@ class BrandEditorViewController: UITableViewController {
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
+            
             let propertyName = editableBrand.propertyLabels[indexPath.row - 1]
             let propertyLabel = editableBrand.propertyValues[indexPath.row - 1]
             cell.loadView(propertyName, propertyLabel)
@@ -67,11 +60,9 @@ class BrandEditorViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let imageCellHeight: CGFloat = (tableView.bounds.height / 3)
-        let propertyCellHeight: CGFloat = (tableView.bounds.height - imageCellHeight) / 4
         switch indexPath.row {
-        case 0: return imageCellHeight
-        default: return propertyCellHeight
+        case 0: return calculateRowHeight(occupiedFractionOfTableHeight: 0.33)
+        default: return calculateRowHeight(occupiedFractionOfTableHeight: 0.125)
         }
     }
     
@@ -81,19 +72,7 @@ class BrandEditorViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         self.view.endEditing(true)
         switch indexPath.row {
-        case 0:
-            let ac = UIAlertController(title: "Choose photo source", message: nil, preferredStyle: .actionSheet)
-            let photo = UIAlertAction(title: "Photo gallery", style: .default) { [weak self] (_) in
-                self?.showImagePicker(source: .photoLibrary)
-            }
-            let album = UIAlertAction(title: "Saved photos", style: .default) { [weak self] (_) in
-                self?.showImagePicker(source: .savedPhotosAlbum)
-            }
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            ac.addAction(photo)
-            ac.addAction(album)
-            ac.addAction(cancel)
-            present(ac, animated: true)
+        case 0: showPhotoSourceActionSheet()
         default: return
         }
     }
@@ -116,27 +95,14 @@ extension BrandEditorViewController: UITextFieldDelegate {
 
 //MARK: -  UIImagePicker Delegate
 
-extension BrandEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension BrandEditorViewController {
     
-    func showImagePicker(source: UIImagePickerController.SourceType) {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary),
-              UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = source
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell,
-              let newImage = info[.editedImage] as? UIImage else { dismiss(animated: true); return }
-        imageCell.cellImageView.image = newImage
-        imageCell.cellImageView.contentMode = .scaleAspectFit
+    override func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        super.imagePickerController(picker, didFinishPickingMediaWithInfo: info)
+        guard let newImage = info[.editedImage] as? UIImage else { return }
         editableBrand = brandManager.updateBrandImage(brand: editableBrand, newImage)
-        FileManager.default.clearTmpFolder()
-        dismiss(animated: true)
     }
+    
 }
 
 

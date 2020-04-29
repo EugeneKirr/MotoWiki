@@ -14,7 +14,7 @@ class BikeListViewController: UITableViewController {
     
     var brandOfInterest = Brand()
     
-    private var currentBikeList: BikeList {
+    private var currentBikeList: [Bike] {
         return bikeManager.fetchBikeListFromDB(with: brandOfInterest, sortBy: .name)
     }
     
@@ -32,7 +32,7 @@ class BikeListViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        guard currentBikeList.bikes.count == 0 else { return }
+        guard currentBikeList.count == 0 else { return }
         showEmptyAlert()
     }
     
@@ -59,18 +59,17 @@ class BikeListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentBikeList.bikes.count
+        return currentBikeList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.bikeListCell.cellIdentifier, for: indexPath) as? BikeListCell else { return UITableViewCell() }
-        cell.loadView(bike: currentBikeList.bikes[indexPath.row])
+        cell.loadView(bike: currentBikeList[indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let numberOfRowsInTableView: CGFloat = 8.5
-        return (tableView.bounds.height / numberOfRowsInTableView)
+        return calculateRowHeight(occupiedFractionOfTableHeight: 0.125)
     }
     
     // MARK: - Table view delegate
@@ -79,38 +78,30 @@ class BikeListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         initializeAndPush(viewController: .bikeViewerVC) { [weak self] (vc) in
             guard let self = self, let bikeViewerVC = vc as? BikeViewerViewController else { return }
-            bikeViewerVC.bikeID = self.currentBikeList.bikes[indexPath.row].id
+            bikeViewerVC.bikeID = self.currentBikeList[indexPath.row].id
         }
     }
     
     // MARK: - Swipe actions
         
-        override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
-                self.initializeAndPush(viewController: .bikeEditorVC) { [weak self] (vc) in
-                    guard let self = self, let bikeEditorVC = vc as? BikeEditorViewController else { return }
-                    bikeEditorVC.editableBike = self.currentBikeList.bikes[indexPath.row]
-                }
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
+            self.initializeAndPush(viewController: .bikeEditorVC) { [weak self] (vc) in
+                guard let self = self, let bikeEditorVC = vc as? BikeEditorViewController else { return }
+                bikeEditorVC.editableBike = self.currentBikeList[indexPath.row]
             }
-            let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
-                self.showDeleteAlert(indexPath)
-            }
-            return UISwipeActionsConfiguration(actions: [edit, delete])
         }
-        
-        func showDeleteAlert(_ indexPath: IndexPath) {
-            let ac = UIAlertController(title: "Warning", message: "Delete this bike?", preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Yes", style: .destructive) { [weak self] (_) in
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
+            self.showDeleteAlert(indexPath) { [weak self] (_) in
                 guard let self = self else { return }
-                let deletedBike = self.currentBikeList.bikes[indexPath.row]
+                let deletedBike = self.currentBikeList[indexPath.row]
                 self.bikeManager.performDBActionWith(deletedBike, action: .deleteFromDB)
                 FileManager.default.deleteImageFile(in: .bikes, imageName: "\(deletedBike.id).png")
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             }
-            let no = UIAlertAction(title: "No", style: .default, handler: nil)
-            ac.addAction(yes)
-            ac.addAction(no)
-            present(ac, animated: true)
         }
+        return UISwipeActionsConfiguration(actions: [edit, delete])
     }
+        
+}
 

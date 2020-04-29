@@ -19,7 +19,7 @@ class BikeManager {
         case year
     }
     
-    func fetchBikeListFromDB(with brand: Brand? = nil, sortBy: SortByProperty) -> BikeList {
+    func fetchBikeListFromDB(with brand: Brand? = nil, sortBy: SortByProperty) -> [Bike] {
         var fetchedBikes = [Bike]()
         realmManager.fetchFromDB { (bikeObjects: Results<RealmObjectBike>) in
             if let brand = brand {
@@ -29,9 +29,15 @@ class BikeManager {
                     fetchedBikes.append(bike)
                 }
             } else {
-                for object in bikeObjects {
-                    let bike = Bike(Brand(), object)
-                    fetchedBikes.append(bike)
+                for bikeObject in bikeObjects {
+                    realmManager.fetchFromDB { (brandObjects: Results<RealmObjectBrand>) in
+                        for brandObject in brandObjects {
+                            guard brandObject.id == bikeObject.brandID else { continue }
+                            let brand = Brand(brandObject)
+                            let bike = Bike(brand, bikeObject)
+                            fetchedBikes.append(bike)
+                        }
+                    }
                 }
             }
         }
@@ -42,7 +48,7 @@ class BikeManager {
             case .year: return firstBike.propertyValues[4] < secondBike.propertyValues[4]
             }
         }
-        return BikeList(bikes: fetchedBikes)
+        return fetchedBikes
     }
     
     func fetchBikeFromDB(with id: Int) -> Bike {
@@ -64,23 +70,7 @@ class BikeManager {
     
     func performDBActionWith(_ bike: Bike, action: DBActions) {
         let realmObject = RealmObjectBike()
-        realmObject.id = bike.id
-        realmObject.brandID = bike.brandID
-        realmObject.imageName = "\(bike.id).png"
-        realmObject.name = bike.propertyValues[2]
-        realmObject.bikeType = bike.propertyValues[3]
-        realmObject.yearOfProduction = Int(bike.propertyValues[4]) ?? 0
-        realmObject.horsePower = Int(bike.propertyValues[5]) ?? 0
-        realmObject.torque = Int(bike.propertyValues[6]) ?? 0
-        realmObject.engineType = bike.propertyValues[7]
-        realmObject.engineDispacement = Int(bike.propertyValues[8]) ?? 0
-        realmObject.maximumSpeed = Int(bike.propertyValues[9]) ?? 0
-        realmObject.acceleration = Float(bike.propertyValues[10]) ?? 0.0
-        realmObject.tankCapacity = Float(bike.propertyValues[11]) ?? 0.0
-        realmObject.fuelConsumption = Float(bike.propertyValues[12]) ?? 0.0
-        realmObject.dryWeight = Int(bike.propertyValues[13]) ?? 0
-        realmObject.curbWeight = Int(bike.propertyValues[14]) ?? 0
-        realmObject.seatHeight = Int(bike.propertyValues[15]) ?? 0
+        realmObject.getValues(from: bike)
         switch action {
         case .addToDB: realmManager.addToDB(realmObject)
         case .deleteFromDB: realmManager.deleteFromDB(realmObject)
@@ -100,7 +90,7 @@ extension BikeManager {
     
     func updateBikeWithNewID(_ bike: Bike) -> Bike {
         let bikeList = fetchBikeListFromDB(sortBy: .id)
-        let newID = (bikeList.bikes.last?.id ?? 0) + 1
+        let newID = (bikeList.last?.id ?? 0) + 1
         let updatedBike = Bike(id: newID, brandID: bike.brandID, image: bike.image, propertyValues: bike.propertyValues)
         return updatedBike
     }

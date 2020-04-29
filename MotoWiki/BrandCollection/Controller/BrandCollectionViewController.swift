@@ -12,7 +12,7 @@ class BrandCollectionViewController: UICollectionViewController {
     
     private let brandManager = BrandManager()
     
-    var currentBrandList: BrandList {
+    var currentBrandList: [Brand] {
         return brandManager.fetchBrandListFromDB(sortBy: .name)
     }
 
@@ -25,10 +25,10 @@ class BrandCollectionViewController: UICollectionViewController {
             self.navigationItem.rightBarButtonItem = navAddButton
         }
         registerCells([.brandCollectionCell])
-        setInitial(viewController: .brandCollectionVC)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setInitial(viewController: .brandCollectionVC)
         collectionView.reloadData()
     }
     
@@ -49,12 +49,12 @@ class BrandCollectionViewController: UICollectionViewController {
     // MARK: - UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentBrandList.brands.count
+        return currentBrandList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectViews.brandCollectionCell.cellIdentifier, for: indexPath) as? BrandCollectionCell else { return UICollectionViewCell() }
-        cell.loadView(brand: currentBrandList.brands[indexPath.row])
+        cell.loadView(brand: currentBrandList[indexPath.row])
         return cell
     }
 
@@ -63,7 +63,7 @@ class BrandCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         initializeAndPush(viewController: .bikeListVC) { [weak self] (vc) in
             guard let self = self, let bikeListVC = vc as? BikeListViewController else { return }
-            bikeListVC.brandOfInterest = self.currentBrandList.brands[indexPath.row]
+            bikeListVC.brandOfInterest = self.currentBrandList[indexPath.row]
         }
     }
     

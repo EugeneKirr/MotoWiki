@@ -12,7 +12,7 @@ class BrandListViewController: UITableViewController {
     
     private let brandManager = BrandManager()
     
-    var currentBrandList: BrandList {
+    var currentBrandList: [Brand] {
         return brandManager.fetchBrandListFromDB(sortBy: .name)
     }
 
@@ -25,10 +25,10 @@ class BrandListViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = navAddButton
         }
         registerCells([.brandListCell])
-        setInitial(viewController: .brandListVC)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setInitial(viewController: .brandListVC)
         tableView.reloadData()
     }
     
@@ -49,18 +49,17 @@ class BrandListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentBrandList.brands.count
+        return currentBrandList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.brandListCell.cellIdentifier, for: indexPath) as? BrandListCell else { return UITableViewCell() }
-        cell.loadView(brand: currentBrandList.brands[indexPath.row])
+        cell.loadView(brand: currentBrandList[indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let numberOfRowsInTableView: CGFloat = 8.5
-        return (tableView.bounds.height / numberOfRowsInTableView)
+        return calculateRowHeight(occupiedFractionOfTableHeight: 0.125)
     }
     
     // MARK: - Table view delegate
@@ -69,7 +68,7 @@ class BrandListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         initializeAndPush(viewController: .bikeListVC) { [weak self] (vc) in
             guard let self = self, let bikeListVC = vc as? BikeListViewController else { return }
-            bikeListVC.brandOfInterest = self.currentBrandList.brands[indexPath.row]
+            bikeListVC.brandOfInterest = self.currentBrandList[indexPath.row]
         }
     }
     
@@ -79,27 +78,19 @@ class BrandListViewController: UITableViewController {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
             self.initializeAndPush(viewController: .brandEditorVC) { [weak self] (vc) in
                 guard let self = self, let brandEditorVC = vc as? BrandEditorViewController else { return }
-                brandEditorVC.editableBrand = self.currentBrandList.brands[indexPath.row]
+                brandEditorVC.editableBrand = self.currentBrandList[indexPath.row]
             }
         }
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
-            self.showDeleteAlert(indexPath)
+            self.showDeleteAlert(indexPath) { [weak self] (_) in
+                guard let self = self else { return }
+                let deletedBrand = self.currentBrandList[indexPath.row]
+                self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)
+                FileManager.default.deleteImageFile(in: .brands, imageName: "\(deletedBrand.id).png")
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
         return UISwipeActionsConfiguration(actions: [edit, delete])
     }
-    
-    func showDeleteAlert(_ indexPath: IndexPath) {
-        let ac = UIAlertController(title: "Warning", message: "Delete this brand?", preferredStyle: .alert)
-        let yes = UIAlertAction(title: "Yes", style: .destructive) { [weak self] (_) in
-            guard let self = self else { return }
-            let deletedBrand = self.currentBrandList.brands[indexPath.row]
-            self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)
-            FileManager.default.deleteImageFile(in: .brands, imageName: "\(deletedBrand.id).png")
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-        let no = UIAlertAction(title: "No", style: .default, handler: nil)
-        ac.addAction(yes)
-        ac.addAction(no)
-        present(ac, animated: true)
-    }
+
 }

@@ -23,3 +23,14 @@ class RealmObjectBrand: Object {
     
 }
 
+extension RealmObjectBrand {
+    
+    func getValues(from brand: Brand) {
+        id = brand.id
+        imageName = "\(brand.id).png"
+        name = brand.propertyValues[0]
+        origin = brand.propertyValues[1]
+    }
+    
+}
+

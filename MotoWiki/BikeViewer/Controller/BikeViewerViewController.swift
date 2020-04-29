@@ -64,11 +64,9 @@ class BikeViewerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let imageCellHeight: CGFloat = (tableView.bounds.height / 3)
-        let propertyCellHeight: CGFloat = (tableView.bounds.height - imageCellHeight) / 6.5
         switch indexPath.row {
-        case 0: return imageCellHeight
-        default: return propertyCellHeight
+        case 0: return calculateRowHeight(occupiedFractionOfTableHeight: 0.33)
+        default: return calculateRowHeight(occupiedFractionOfTableHeight: 0.125)
         }
     }
     

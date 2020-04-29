@@ -33,6 +33,7 @@ extension Brand {
     
 }
 
+// init empty Brand: brand = Brand()
 extension Brand {
     
     init() {

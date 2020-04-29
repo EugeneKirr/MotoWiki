@@ -35,3 +35,27 @@ class RealmObjectBike: Object {
     }
      
 }
+
+extension RealmObjectBike {
+    
+    func getValues(from bike: Bike) {
+        id = bike.id
+        brandID = bike.brandID
+        imageName = "\(bike.id).png"
+        name = bike.propertyValues[2]
+        bikeType = bike.propertyValues[3]
+        yearOfProduction = Int(bike.propertyValues[4]) ?? 0
+        horsePower = Int(bike.propertyValues[5]) ?? 0
+        torque = Int(bike.propertyValues[6]) ?? 0
+        engineType = bike.propertyValues[7]
+        engineDispacement = Int(bike.propertyValues[8]) ?? 0
+        maximumSpeed = Int(bike.propertyValues[9]) ?? 0
+        acceleration = Float(bike.propertyValues[10]) ?? 0.0
+        tankCapacity = Float(bike.propertyValues[11]) ?? 0.0
+        fuelConsumption = Float(bike.propertyValues[12]) ?? 0.0
+        dryWeight = Int(bike.propertyValues[13]) ?? 0
+        curbWeight = Int(bike.propertyValues[14]) ?? 0
+        seatHeight = Int(bike.propertyValues[15]) ?? 0
+    }
+    
+}

@@ -19,7 +19,7 @@ class BrandManager {
         case origin
     }
     
-    func fetchBrandListFromDB(sortBy: SortByProperty) -> BrandList {
+    func fetchBrandListFromDB(sortBy: SortByProperty) -> [Brand] {
         var fetchedBrands = [Brand]()
         realmManager.fetchFromDB { (brandObjects: Results<RealmObjectBrand>) in
             for object in brandObjects {
@@ -35,15 +35,12 @@ class BrandManager {
             }
         }
 //        realmManager.printRealmURL()
-        return BrandList(brands: fetchedBrands)
+        return fetchedBrands
     }
     
     func performDBActionWith(_ brand: Brand, action: DBActions) {
         let realmObject = RealmObjectBrand()
-        realmObject.id = brand.id
-        realmObject.imageName = "\(brand.id).png"
-        realmObject.name = brand.propertyValues[0]
-        realmObject.origin = brand.propertyValues[1]
+        realmObject.getValues(from: brand)
         switch action {
         case .addToDB: realmManager.addToDB(realmObject)
         case .deleteFromDB: realmManager.deleteFromDB(realmObject)
@@ -63,7 +60,7 @@ extension BrandManager {
     
     func updateBrandWithNewID(_ brand: Brand) -> Brand {
         let brandList = fetchBrandListFromDB(sortBy: .id)
-        let newID = (brandList.brands.last?.id ?? 0) + 1
+        let newID = (brandList.last?.id ?? 0) + 1
         let updatedBrand = Brand(id: newID, image: brand.image, propertyValues: brand.propertyValues)
         return updatedBrand
     }
