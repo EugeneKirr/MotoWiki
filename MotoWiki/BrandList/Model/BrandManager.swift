@@ -42,8 +42,19 @@ class BrandManager {
         let realmObject = RealmObjectBrand()
         realmObject.getValues(from: brand)
         switch action {
-        case .addToDB: realmManager.addToDB(realmObject)
-        case .deleteFromDB: realmManager.deleteFromDB(realmObject)
+        case .addToDB:
+            FileManager.default.createNewImageFile(in: .brands, image: brand.image, imageName: realmObject.imageName)
+            realmManager.addToDB(realmObject)
+        case .deleteFromDB:
+            realmManager.fetchFromDB { (bikeObjects: Results<RealmObjectBike>) in
+                for bikeObject in bikeObjects {
+                    guard bikeObject.brandID == brand.id else { continue }
+                    FileManager.default.deleteImageFile(in: .bikes, imageName: bikeObject.imageName)
+                    realmManager.deleteFromDB(bikeObject)
+                }
+            }
+            FileManager.default.deleteImageFile(in: .brands, imageName: realmObject.imageName)
+            realmManager.deleteFromDB(realmObject)
         }
     }
     

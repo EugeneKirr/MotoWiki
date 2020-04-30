@@ -30,7 +30,6 @@ class BrandEditorViewController: UITableViewController {
     @objc func tapSaveButton() {
         guard editableBrand.propertyValues[0] != "" else { showEmptyNameAlert(); return }
         brandManager.performDBActionWith(editableBrand, action: .addToDB)
-        FileManager.default.createNewImageFile(in: .brands, image: editableBrand.image, imageName: "\(editableBrand.id).png")
         self.navigationController?.popViewController(animated: true)
     }
     

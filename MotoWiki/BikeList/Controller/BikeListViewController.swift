@@ -28,10 +28,12 @@ class BikeListViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         guard currentBikeList.count == 0 else { return }
         showEmptyAlert()
     }
@@ -96,7 +98,6 @@ class BikeListViewController: UITableViewController {
                 guard let self = self else { return }
                 let deletedBike = self.currentBikeList[indexPath.row]
                 self.bikeManager.performDBActionWith(deletedBike, action: .deleteFromDB)
-                FileManager.default.deleteImageFile(in: .bikes, imageName: "\(deletedBike.id).png")
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }

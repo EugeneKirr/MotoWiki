@@ -28,6 +28,7 @@ class BrandCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setInitial(viewController: .brandCollectionVC)
         collectionView.reloadData()
     }

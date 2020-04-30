@@ -30,7 +30,6 @@ class BikeEditorViewController: UITableViewController {
     @objc func tapSaveButton() {
         guard editableBike.propertyValues[2] != "" else { showEmptyNameAlert(); return }
         bikeManager.performDBActionWith(editableBike, action: .addToDB)
-        FileManager.default.createNewImageFile(in: .bikes, image: editableBike.image, imageName: "\(editableBike.id).png")
         self.navigationController?.popViewController(animated: true)
     }
 

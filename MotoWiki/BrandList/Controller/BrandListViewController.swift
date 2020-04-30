@@ -28,6 +28,7 @@ class BrandListViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setInitial(viewController: .brandListVC)
         tableView.reloadData()
     }
@@ -86,7 +87,6 @@ class BrandListViewController: UITableViewController {
                 guard let self = self else { return }
                 let deletedBrand = self.currentBrandList[indexPath.row]
                 self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)
-                FileManager.default.deleteImageFile(in: .brands, imageName: "\(deletedBrand.id).png")
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }

@@ -72,8 +72,12 @@ class BikeManager {
         let realmObject = RealmObjectBike()
         realmObject.getValues(from: bike)
         switch action {
-        case .addToDB: realmManager.addToDB(realmObject)
-        case .deleteFromDB: realmManager.deleteFromDB(realmObject)
+        case .addToDB:
+            FileManager.default.createNewImageFile(in: .bikes, image: bike.image, imageName: realmObject.imageName)
+            realmManager.addToDB(realmObject)
+        case .deleteFromDB:
+            FileManager.default.deleteImageFile(in: .bikes, imageName: realmObject.imageName)
+            realmManager.deleteFromDB(realmObject)
         }
     }
     
