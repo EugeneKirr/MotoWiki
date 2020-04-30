@@ -33,6 +33,14 @@ class BrandListViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard currentBrandList.count == 0 else { return }
+        showEmptyViewAlert { [weak self] (_) in
+            self?.tapAddButton()
+        }
+    }
+    
     // MARK: - Navigation bar actions
     
     @objc func tapSwitchViewButton() {

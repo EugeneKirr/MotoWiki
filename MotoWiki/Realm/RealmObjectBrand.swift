@@ -32,5 +32,11 @@ extension RealmObjectBrand {
         origin = brand.propertyValues[1]
     }
     
+    func getInitialValues() {
+        id = 1
+        imageName = "1.png"
+        name = "Your Brand"
+    }
+    
 }
 

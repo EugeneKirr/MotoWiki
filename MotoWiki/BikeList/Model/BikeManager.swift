@@ -13,6 +13,19 @@ class BikeManager {
     
     private let realmManager = RealmManager()
     
+    init() {
+        addInitialBikeToDB()
+    }
+    
+    func addInitialBikeToDB() {
+        let defaults = UserDefaults.standard
+        guard defaults.object(forKey: UDKeys.initialBike.key) == nil else { return }
+        let initialRealmBike = RealmObjectBike()
+        initialRealmBike.getInitialValues()
+        realmManager.addToDB(initialRealmBike)
+        defaults.set(true, forKey: UDKeys.initialBike.key)
+    }
+    
     enum SortByProperty {
         case id
         case name

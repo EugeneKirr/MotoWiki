@@ -69,3 +69,17 @@ extension UIViewController {
         completion?(viewController)
     }
 }
+
+extension UIViewController {
+    
+    func showEmptyViewAlert(addCompletion: ((UIAlertAction) -> Void)?) {
+        let ac = UIAlertController(title: "Empty", message: "Please add new items", preferredStyle: .alert)
+        let add = UIAlertAction(title: "Add", style: .default, handler: addCompletion)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        ac.addAction(add)
+        ac.addAction(cancel)
+        present(ac, animated: true, completion: nil)
+    }
+    
+    
+}

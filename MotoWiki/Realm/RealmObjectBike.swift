@@ -58,4 +58,11 @@ extension RealmObjectBike {
         seatHeight = Int(bike.propertyValues[15]) ?? 0
     }
     
+    func getInitialValues() {
+        id = 1
+        brandID = 1
+        imageName = "1.png"
+        name = "Your Bike"
+    }
+    
 }

@@ -35,18 +35,9 @@ class BikeListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard currentBikeList.count == 0 else { return }
-        showEmptyAlert()
-    }
-    
-    func showEmptyAlert() {
-        let ac = UIAlertController(title: "Empty", message: "Please add new models", preferredStyle: .alert)
-        let add = UIAlertAction(title: "Add", style: .default) { (_) in
-            self.tapAddButton()
+        showEmptyViewAlert { [weak self] (_) in
+            self?.tapAddButton()
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        ac.addAction(add)
-        ac.addAction(cancel)
-        present(ac, animated: true, completion: nil)
     }
     
     // MARK: - Navigation bar actions

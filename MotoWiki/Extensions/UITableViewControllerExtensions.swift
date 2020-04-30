@@ -75,3 +75,12 @@ extension UITableViewController {
     }
 
 }
+
+extension UITableViewController {
+    
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+}

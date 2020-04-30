@@ -13,6 +13,19 @@ class BrandManager {
     
     private let realmManager = RealmManager()
     
+    init() {
+        addInitialBrandToDB()
+    }
+    
+    func addInitialBrandToDB() {
+        let defaults = UserDefaults.standard
+        guard defaults.object(forKey: UDKeys.initialBrand.key) == nil else { return }
+        let initialRealmBrand = RealmObjectBrand()
+        initialRealmBrand.getInitialValues()
+        realmManager.addToDB(initialRealmBrand)
+        defaults.set(true, forKey: UDKeys.initialBrand.key)
+    }
+    
     enum SortByProperty {
         case id
         case name
@@ -34,7 +47,6 @@ class BrandManager {
             case .origin: return firstBrand.propertyValues[1] < secondBrand.propertyValues[1]
             }
         }
-//        realmManager.printRealmURL()
         return fetchedBrands
     }
     
