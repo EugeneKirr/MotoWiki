@@ -39,6 +39,10 @@
 		0B3D8C1E244F610A00273067 /* BrandListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3D8C1D244F610A00273067 /* BrandListCell.xib */; };
 		0B490D8F2456CEE1000142D6 /* FMPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B490D8E2456CEE1000142D6 /* FMPaths.swift */; };
 		0B490D912457080D000142D6 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B490D902457080D000142D6 /* FileManagerExtensions.swift */; };
+		0B5CBB68245B240C00EAF7E3 /* EditorGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CBB67245B240C00EAF7E3 /* EditorGalleryCell.swift */; };
+		0B5CBB6A245B244700EAF7E3 /* EditorGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CBB69245B244700EAF7E3 /* EditorGalleryCell.xib */; };
+		0B5CBB6D245B2B2700EAF7E3 /* GalleryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5CBB6C245B2B2700EAF7E3 /* GalleryCollectionCell.swift */; };
+		0B5CBB6F245B2B8100EAF7E3 /* GalleryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CBB6E245B2B8100EAF7E3 /* GalleryCollectionCell.xib */; };
 		0B6BDD662407AFAB009D28D3 /* BikeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */; };
 		0B8FC0F82403000F00C98C07 /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FC0F72403000F00C98C07 /* Bike.swift */; };
 		0BA3D87F240CEF8B0095B469 /* BrandEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */; };
@@ -86,6 +90,10 @@
 		0B3D8C1D244F610A00273067 /* BrandListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandListCell.xib; sourceTree = "<group>"; };
 		0B490D8E2456CEE1000142D6 /* FMPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMPaths.swift; sourceTree = "<group>"; };
 		0B490D902457080D000142D6 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
+		0B5CBB67245B240C00EAF7E3 /* EditorGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorGalleryCell.swift; sourceTree = "<group>"; };
+		0B5CBB69245B244700EAF7E3 /* EditorGalleryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditorGalleryCell.xib; sourceTree = "<group>"; };
+		0B5CBB6C245B2B2700EAF7E3 /* GalleryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionCell.swift; sourceTree = "<group>"; };
+		0B5CBB6E245B2B8100EAF7E3 /* GalleryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCollectionCell.xib; sourceTree = "<group>"; };
 		0B6BDD652407AFAB009D28D3 /* BikeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeEditorViewController.swift; sourceTree = "<group>"; };
 		0B8FC0F72403000F00C98C07 /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
 		0BA3D87E240CEF8B0095B469 /* BrandEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandEditorViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +244,7 @@
 				0B161EA1240687C10074105E /* BikeList */,
 				0B161EA3240688310074105E /* BikeEditor */,
 				0B51F732240FE310004D434A /* BikeViewer */,
+				0B9E34D4245C16E900A328CC /* EditorViews */,
 			);
 			path = MotoWiki;
 			sourceTree = "<group>";
@@ -353,6 +362,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0B5CBB66245B233300EAF7E3 /* EditorGalleryCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B5CBB67245B240C00EAF7E3 /* EditorGalleryCell.swift */,
+				0B5CBB69245B244700EAF7E3 /* EditorGalleryCell.xib */,
+				0B5CBB6B245B297200EAF7E3 /* GalleryCollectionCell */,
+			);
+			path = EditorGalleryCell;
+			sourceTree = "<group>";
+		};
+		0B5CBB6B245B297200EAF7E3 /* GalleryCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B5CBB6C245B2B2700EAF7E3 /* GalleryCollectionCell.swift */,
+				0B5CBB6E245B2B8100EAF7E3 /* GalleryCollectionCell.xib */,
+			);
+			path = GalleryCollectionCell;
+			sourceTree = "<group>";
+		};
 		0B7D2714240CE6EE0021F1E9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +407,16 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		0B9E34D4245C16E900A328CC /* EditorViews */ = {
+			isa = PBXGroup;
+			children = (
+				0B31FD722450B18900F5114B /* EditorPropertyCell */,
+				0B31FD772450B4B800F5114B /* EditorImageCell */,
+				0B5CBB66245B233300EAF7E3 /* EditorGalleryCell */,
+			);
+			path = EditorViews;
+			sourceTree = "<group>";
+		};
 		0BA3D880240CEF960095B469 /* BrandEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,8 +430,6 @@
 			isa = PBXGroup;
 			children = (
 				0B3D8C14244F594200273067 /* BrandEditor.storyboard */,
-				0B31FD772450B4B800F5114B /* EditorImageCell */,
-				0B31FD722450B18900F5114B /* EditorPropertyCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -499,6 +535,7 @@
 				0B3D8C1B244F5A4D00273067 /* BikeViewer.storyboard in Resources */,
 				0B3D8C19244F5A0900273067 /* BikeEditor.storyboard in Resources */,
 				0B3D8C17244F599A00273067 /* BikeList.storyboard in Resources */,
+				0B5CBB6F245B2B8100EAF7E3 /* GalleryCollectionCell.xib in Resources */,
 				0B1BB08724503A010075888A /* BrandCollectionCell.xib in Resources */,
 				0B22B1752451734700E06E30 /* BikeListCell.xib in Resources */,
 				0B2D0F762400422500815D22 /* LaunchScreen.storyboard in Resources */,
@@ -508,6 +545,7 @@
 				0B3D8C15244F594200273067 /* BrandEditor.storyboard in Resources */,
 				0B31FD7B2450B58400F5114B /* EditorImageCell.xib in Resources */,
 				0B31FD762450B20000F5114B /* EditorPropertyCell.xib in Resources */,
+				0B5CBB6A245B244700EAF7E3 /* EditorGalleryCell.xib in Resources */,
 				0B1BB082245039060075888A /* BrandCollection.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +612,7 @@
 				0B3549492410E37D00780687 /* BikeViewerViewController.swift in Sources */,
 				0B119C5224581DB400259D0E /* RealmObjectBike.swift in Sources */,
 				0B35BF742401436600D0495D /* BikeListViewController.swift in Sources */,
+				0B5CBB68245B240C00EAF7E3 /* EditorGalleryCell.swift in Sources */,
 				0B35BF6E240137C900D0495D /* BrandListViewController.swift in Sources */,
 				0BE44F762451F5EA00CB085C /* RealmManager.swift in Sources */,
 				0BE44F782452E9BF00CB085C /* DBActions.swift in Sources */,
@@ -587,6 +626,7 @@
 				0B35BF70240139D400D0495D /* BrandListCell.swift in Sources */,
 				0B35BF722401434700D0495D /* BikeListCell.swift in Sources */,
 				0B2D0F6A2400422400815D22 /* AppDelegate.swift in Sources */,
+				0B5CBB6D245B2B2700EAF7E3 /* GalleryCollectionCell.swift in Sources */,
 				0B2D0F6C2400422400815D22 /* SceneDelegate.swift in Sources */,
 				0BE44F6F2451892800CB085C /* BrandManager.swift in Sources */,
 			);

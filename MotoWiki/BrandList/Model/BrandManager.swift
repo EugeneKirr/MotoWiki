@@ -61,7 +61,9 @@ class BrandManager {
             realmManager.fetchFromDB { (bikeObjects: Results<RealmObjectBike>) in
                 for bikeObject in bikeObjects {
                     guard bikeObject.brandID == brand.id else { continue }
-                    FileManager.default.deleteImageFile(in: .bikes, imageName: bikeObject.imageName)
+                    for index in 0...(bikeObject.imageNames.count - 1) {
+                        FileManager.default.deleteImageFile(in: .bikes, imageName: bikeObject.imageNames[index])
+                    }
                     realmManager.deleteFromDB(bikeObject)
                 }
             }

@@ -24,7 +24,7 @@ class BikeViewerViewController: UITableViewController {
             let navAddButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.tapEditButton) )
             self.navigationItem.rightBarButtonItem = navAddButton
         }
-        registerCells([.editorImageCell, .editorPropertyCell])
+        registerCells([.editorGalleryCell, .editorPropertyCell])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,8 +50,13 @@ class BikeViewerViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorImageCell.cellIdentifier, for: indexPath) as? EditorImageCell else { return UITableViewCell() }
-            cell.cellImageView.image = bikeOfInterest.image
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorGalleryCell.cellIdentifier, for: indexPath) as? EditorGalleryCell else { return UITableViewCell() }
+            
+            cell.editorGalleryCollectionView.delegate = self
+            cell.editorGalleryCollectionView.dataSource = self
+            cell.editorGalleryCollectionView.register(UINib(nibName: ProjectViews.galleryCollectionCell.xibName, bundle: nil), forCellWithReuseIdentifier: ProjectViews.galleryCollectionCell.cellIdentifier)
+            cell.editorGalleryCollectionView.reloadData()
+            
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViews.editorPropertyCell.cellIdentifier, for: indexPath) as? EditorPropertyCell else { return UITableViewCell() }
@@ -77,4 +82,30 @@ class BikeViewerViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+}
+
+extension BikeViewerViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    // MARK: - UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return bikeOfInterest.images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectViews.galleryCollectionCell.cellIdentifier, for: indexPath) as? GalleryCollectionCell else { return UICollectionViewCell() }
+        cell.cellImageView.image = bikeOfInterest.images[indexPath.row]
+        cell.cellActionView.alpha = 0.0
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numberOfCellsInColumn: Int = 1
+        let cellHeight = (collectionView.bounds.height / CGFloat(numberOfCellsInColumn))
+        let cellWidth = 4 * cellHeight / 3
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+      
 }

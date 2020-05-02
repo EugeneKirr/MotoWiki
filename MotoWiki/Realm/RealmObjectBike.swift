@@ -14,7 +14,7 @@ class RealmObjectBike: Object {
     
     dynamic var id = 0
     dynamic var brandID = 0
-    dynamic var imageName = ""
+    let imageNames = List<String>()
     dynamic var name = ""
     dynamic var bikeType = ""
     dynamic var yearOfProduction = 0
@@ -41,7 +41,12 @@ extension RealmObjectBike {
     func getValues(from bike: Bike) {
         id = bike.id
         brandID = bike.brandID
-        imageName = "\(bike.id).png"
+        
+        imageNames.removeAll()
+        for index in 0...bike.images.count - 1 {
+            imageNames.append("\(bike.id)_\(index).png")
+        }
+        
         name = bike.propertyValues[2]
         bikeType = bike.propertyValues[3]
         yearOfProduction = Int(bike.propertyValues[4]) ?? 0
@@ -61,7 +66,7 @@ extension RealmObjectBike {
     func getInitialValues() {
         id = 1
         brandID = 1
-        imageName = "1.png"
+        imageNames.append("1_0.png")
         name = "Your Bike"
     }
     

@@ -10,6 +10,21 @@ import UIKit
 
 extension UITableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    func showPhotoSourceActionSheet() {
+        let ac = UIAlertController(title: "Choose photo source", message: nil, preferredStyle: .actionSheet)
+        let photo = UIAlertAction(title: "Photo gallery", style: .default) { [weak self] (_) in
+            self?.showImagePicker(source: .photoLibrary)
+        }
+        let album = UIAlertAction(title: "Saved photos", style: .default) { [weak self] (_) in
+            self?.showImagePicker(source: .savedPhotosAlbum)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addAction(photo)
+        ac.addAction(album)
+        ac.addAction(cancel)
+        present(ac, animated: true)
+    }
+    
     func showImagePicker(source: UIImagePickerController.SourceType) {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary),
               UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
@@ -21,10 +36,6 @@ extension UITableViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell,
-              let newImage = info[.editedImage] as? UIImage else { dismiss(animated: true); return }
-        imageCell.cellImageView.image = newImage
-        imageCell.cellImageView.contentMode = .scaleAspectFit
         FileManager.default.clearTmpFolder()
         dismiss(animated: true)
     }
@@ -47,21 +58,6 @@ extension UITableViewController {
         let ac = UIAlertController(title: "Can't save", message: "Name should be filled", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         ac.addAction(ok)
-        present(ac, animated: true)
-    }
-    
-    func showPhotoSourceActionSheet() {
-        let ac = UIAlertController(title: "Choose photo source", message: nil, preferredStyle: .actionSheet)
-        let photo = UIAlertAction(title: "Photo gallery", style: .default) { [weak self] (_) in
-            self?.showImagePicker(source: .photoLibrary)
-        }
-        let album = UIAlertAction(title: "Saved photos", style: .default) { [weak self] (_) in
-            self?.showImagePicker(source: .savedPhotosAlbum)
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        ac.addAction(photo)
-        ac.addAction(album)
-        ac.addAction(cancel)
         present(ac, animated: true)
     }
     

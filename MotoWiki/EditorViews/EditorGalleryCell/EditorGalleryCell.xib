@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="editorGalleryCell" rowHeight="160" id="q3g-Su-bsw" customClass="EditorGalleryCell" customModule="MotoWiki" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q3g-Su-bsw" id="w9U-2t-CEZ">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hCm-g7-lnI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="2" minimumInteritemSpacing="2" id="9W8-LZ-bdk">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="-1" id="2BL-lS-yse"/>
+                            <outlet property="delegate" destination="-1" id="wec-X3-6vN"/>
+                        </connections>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="hCm-g7-lnI" secondAttribute="bottom" id="9uk-wM-UyJ"/>
+                    <constraint firstAttribute="trailing" secondItem="hCm-g7-lnI" secondAttribute="trailing" id="Et8-aS-pw6"/>
+                    <constraint firstItem="hCm-g7-lnI" firstAttribute="leading" secondItem="w9U-2t-CEZ" secondAttribute="leading" id="U2r-Qu-g54"/>
+                    <constraint firstItem="hCm-g7-lnI" firstAttribute="top" secondItem="w9U-2t-CEZ" secondAttribute="top" id="cD1-kK-nci"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="editorGalleryCollectionView" destination="hCm-g7-lnI" id="WDn-3H-L45"/>
+            </connections>
+            <point key="canvasLocation" x="43.125" y="13.75"/>
+        </tableViewCell>
+    </objects>
+</document>

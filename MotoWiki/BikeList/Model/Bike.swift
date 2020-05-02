@@ -12,7 +12,7 @@ struct Bike {
     
     let id: Int
     let brandID: Int
-    let image: UIImage
+    let images: [UIImage]
     let propertyLabels: [String] = ["Brand Name", "Country of Origin", "Name", "Type", "Year of Production", "Horse Power, hp", "Torque, Nm", "Engine Type", "Engine Dispacement, cc", "Maximum Speed, km/h", "0-100 Acceleration, sec", "Tank Capacity, l", "Fuel Consumption, l/100 km", "Dry Weight, kg", "Curb Weight, kg", "Seat Height, mm"]
     let propertyValues: [String]
 
@@ -23,9 +23,14 @@ extension Bike {
     init(_ brand: Brand, _ realmBike: RealmObjectBike) {
         self.id = realmBike.id
         self.brandID = brand.id
-        self.image = {
-            let imagePath = FileManager.default.getImagePath(in: .bikes, imageName: realmBike.imageName)
-            return UIImage(contentsOfFile: imagePath) ?? UIImage(named: "DefaultBike")!
+        self.images = {
+            var images = [UIImage]()
+            for imageName in realmBike.imageNames {
+                let imagePath = FileManager.default.getImagePath(in: .bikes, imageName: imageName)
+                let image = UIImage(contentsOfFile: imagePath) ?? UIImage(named: "DefaultBike")!
+                images.append(image)
+            }
+            return images
         }()
         self.propertyValues = {
             var values = [String]()
@@ -47,7 +52,7 @@ extension Bike {
     init(_ brand: Brand) {
         self.id = 0
         self.brandID = brand.id
-        self.image = UIImage(named: "DefaultBike")!
+        self.images = [UIImage(named: "DefaultBike")!]
         self.propertyValues = {
             var values = [String]()
             values.append(contentsOf: [brand.propertyValues[0], brand.propertyValues[1]])

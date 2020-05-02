@@ -98,7 +98,10 @@ extension BrandEditorViewController {
     
     override func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         super.imagePickerController(picker, didFinishPickingMediaWithInfo: info)
-        guard let newImage = info[.editedImage] as? UIImage else { return }
+        guard let imageCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorImageCell,
+              let newImage = info[.editedImage] as? UIImage else { return }
+        imageCell.cellImageView.image = newImage
+        imageCell.cellImageView.contentMode = .scaleAspectFit
         editableBrand = brandManager.updateBrandImage(brand: editableBrand, newImage)
     }
     

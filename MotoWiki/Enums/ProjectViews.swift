@@ -15,6 +15,8 @@ enum ProjectViews {
     case bikeListCell
     case editorImageCell
     case editorPropertyCell
+    case editorGalleryCell
+    case galleryCollectionCell
     
 }
 
@@ -27,6 +29,8 @@ extension ProjectViews {
         case .bikeListCell: return "BikeListCell"
         case .editorImageCell: return "EditorImageCell"
         case .editorPropertyCell: return "EditorPropertyCell"
+        case .editorGalleryCell: return "EditorGalleryCell"
+        case .galleryCollectionCell: return "GalleryCollectionCell"
         }
     }
     
@@ -37,14 +41,15 @@ extension ProjectViews {
         case .bikeListCell: return "bikeListCell"
         case .editorImageCell: return "editorImageCell"
         case .editorPropertyCell: return "editorPropertyCell"
+        case .editorGalleryCell: return "editorGalleryCell"
+        case .galleryCollectionCell: return "galleryCollectionCell"
         }
     }
     
     var superclassDescription: String {
         switch self {
-        case .brandListCell, .bikeListCell, .editorImageCell, .editorPropertyCell: return "UITableViewCell"
-        case .brandCollectionCell: return "UICollectionViewCell"
-            
+        case .brandListCell, .bikeListCell, .editorImageCell, .editorPropertyCell, .editorGalleryCell: return "UITableViewCell"
+        case .brandCollectionCell, .galleryCollectionCell: return "UICollectionViewCell"
         }
     }
     

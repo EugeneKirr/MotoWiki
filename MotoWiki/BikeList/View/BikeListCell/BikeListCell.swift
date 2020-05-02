@@ -18,7 +18,7 @@ class BikeListCell: UITableViewCell {
 extension BikeListCell {
     
     func loadView(bike: Bike) {
-        bikeImageView.image = bike.image
+        bikeImageView.image = bike.images[0]
         bikeNameLabel.text = bike.propertyValues[2]
         yearOfProductionLabel.text = bike.propertyValues[4]
     }
