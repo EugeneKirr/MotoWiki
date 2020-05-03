@@ -95,7 +95,7 @@ extension BikeViewerViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectViews.galleryCollectionCell.cellIdentifier, for: indexPath) as? GalleryCollectionCell else { return UICollectionViewCell() }
         cell.cellImageView.image = bikeOfInterest.images[indexPath.row]
-        cell.cellActionView.alpha = 0.0
+        cell.cellActionButton.alpha = 0.0
         return cell
     }
     

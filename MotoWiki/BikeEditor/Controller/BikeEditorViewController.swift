@@ -110,36 +110,19 @@ extension BikeEditorViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectViews.galleryCollectionCell.cellIdentifier, for: indexPath) as? GalleryCollectionCell else { return UICollectionViewCell() }
-        cell.cellActionView.tag = indexPath.row
-        print(cell.cellActionView.tag)
+        cell.delegate = self
         switch indexPath.row {
         case 0:
             cell.cellImageView.image = editableBike.images[indexPath.row]
-            cell.cellActionView.alpha = 0.0
-            cell.cellActionView.isUserInteractionEnabled = false
+            cell.cellActionButton.alpha = 0.0
         case editableBike.images.count:
             cell.cellImageView.image = UIImage(systemName: "plus.circle")
-            cell.cellActionView.alpha = 0.0
-            cell.cellActionView.isUserInteractionEnabled = false
+            cell.cellActionButton.alpha = 0.0
         default:
             cell.cellImageView.image = editableBike.images[indexPath.row]
-            cell.cellActionView.image = UIImage(systemName: "xmark.circle.fill")
-            cell.cellActionView.alpha = 1.0
-            cell.cellActionView.isUserInteractionEnabled = true
-            let tap = UITapGestureRecognizer(target: self, action: #selector(deleteImage(sender:)) )
-            cell.cellActionView.addGestureRecognizer(tap)
+            cell.cellActionButton.alpha = 1.0
         }
         return cell
-    }
-    
-    @objc func deleteImage(sender: UITapGestureRecognizer) {
-        guard let actionImage = sender.view as? UIImageView else { return }
-        guard let editorGalleryCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorGalleryCell else { return }
-        print("x -> \(actionImage.tag)")
-        
-        editableBike = bikeManager.removeBikeImage(bike: editableBike, imageIndex: actionImage.tag)
-        editorGalleryCell.editorGalleryCollectionView.deleteItems(at: [IndexPath(item: actionImage.tag, section: 0)] )
-        editorGalleryCell.editorGalleryCollectionView.reloadData()
     }
     
     // MARK: - UICollectionViewDelegate
@@ -171,6 +154,19 @@ extension BikeEditorViewController {
               let newImage = info[.editedImage] as? UIImage else { return }
         editableBike = bikeManager.updateBikeImage(bike: editableBike, imageIndex: selectedCellIndex, with: newImage)
         editorGalleryCell.editorGalleryCollectionView.reloadData()
+    }
+    
+}
+
+//MARK: -  GalleryCollectionCell ButtonActionDelegate
+
+extension BikeEditorViewController: CellButtonActionDelegate {
+    
+    func buttonAction(_ cell: UICollectionViewCell) {
+        guard let editorGalleryCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditorGalleryCell else { return }
+        guard let cellIndexPath = editorGalleryCell.editorGalleryCollectionView.indexPath(for: cell) else { print("no index"); return }
+        editableBike = bikeManager.removeBikeImage(bike: editableBike, imageIndex: cellIndexPath.row)
+        editorGalleryCell.editorGalleryCollectionView.deleteItems(at: [cellIndexPath])
     }
     
 }
