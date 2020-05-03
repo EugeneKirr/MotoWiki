@@ -49,6 +49,15 @@ extension UITableViewController {
         let tableHeight = self.tableView.bounds.height
         return tableHeight * occupiedFractionOfTableHeight
     }
+    
+    func calculateGalleryCellSize(galleryView: UICollectionView, occupiedFractionOfGalleryHeight: CGFloat, cellWidthMultiplier: CGFloat) -> CGSize {
+        guard occupiedFractionOfGalleryHeight >= 0.0 && occupiedFractionOfGalleryHeight <= 1.0 else {
+            return CGSize(width: galleryView.bounds.height, height: galleryView.bounds.height)
+        }
+        let cellHeight = galleryView.bounds.height * occupiedFractionOfGalleryHeight
+        let cellWidth = cellHeight * cellWidthMultiplier
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
  
 }
 

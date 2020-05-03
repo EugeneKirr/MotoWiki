@@ -102,10 +102,7 @@ extension BikeViewerViewController: UICollectionViewDataSource, UICollectionView
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfCellsInColumn: Int = 1
-        let cellHeight = (collectionView.bounds.height / CGFloat(numberOfCellsInColumn))
-        let cellWidth = 4 * cellHeight / 3
-        return CGSize(width: cellWidth, height: cellHeight)
+        return calculateGalleryCellSize(galleryView: collectionView, occupiedFractionOfGalleryHeight: 1.0, cellWidthMultiplier: (4/3))
     }
       
 }

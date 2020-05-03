@@ -16,21 +16,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA6-fg-dB7">
-                        <rect key="frame" x="16" y="0.0" width="116" height="80"/>
+                        <rect key="frame" x="16" y="0.0" width="96" height="80"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="-" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9d-Di-5kH">
-                        <rect key="frame" x="132" y="0.0" width="172" height="80"/>
+                        <rect key="frame" x="112" y="0.0" width="192" height="80"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OA6-fg-dB7" secondAttribute="trailing" constant="100" id="3g4-k6-NSw"/>
                     <constraint firstItem="OA6-fg-dB7" firstAttribute="leading" secondItem="QMH-lq-6li" secondAttribute="leading" constant="16" id="4dK-mn-QIr"/>
                     <constraint firstItem="OA6-fg-dB7" firstAttribute="top" secondItem="QMH-lq-6li" secondAttribute="top" id="BeK-BZ-SyM"/>
+                    <constraint firstItem="OA6-fg-dB7" firstAttribute="width" secondItem="QMH-lq-6li" secondAttribute="width" multiplier="0.3" id="GtV-Hz-pVL"/>
                     <constraint firstAttribute="bottom" secondItem="OA6-fg-dB7" secondAttribute="bottom" id="Ytv-lc-HYt"/>
                     <constraint firstAttribute="bottom" secondItem="P9d-Di-5kH" secondAttribute="bottom" id="ZcQ-2c-msk"/>
                     <constraint firstAttribute="trailing" secondItem="P9d-Di-5kH" secondAttribute="trailing" constant="16" id="aCe-o7-b5P"/>

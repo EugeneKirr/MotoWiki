@@ -57,10 +57,8 @@ class BikeEditorViewController: UITableViewController {
             let propertyName = editableBike.propertyLabels[indexPath.row - 1]
             let propertyLabel = editableBike.propertyValues[indexPath.row - 1]
             cell.loadView(propertyName, propertyLabel)
-            
             cell.propertyValueTextField.delegate = self
-            cell.propertyValueTextField.tag = (indexPath.row - 1)
-            if cell.propertyValueTextField.tag == 0 || cell.propertyValueTextField.tag == 1 {
+            if indexPath.row == 1 || indexPath.row == 2 {
                 cell.propertyValueTextField.isUserInteractionEnabled = false
                 cell.backgroundColor = .lightGray
             } else {
@@ -89,13 +87,20 @@ class BikeEditorViewController: UITableViewController {
 // MARK: - UITextField Delegate
 
 extension BikeEditorViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let tfContentView = textField.superview,
+              let tfCell = tfContentView.superview as? EditorPropertyCell,
+              let cellIndex = tableView.indexPath(for: tfCell) else { return }
+        selectedCellIndex = (cellIndex.row - 1)
+    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        editableBike = bikeManager.updateBikeProperty(bike: editableBike, forIndex: textField.tag, byValue: textField.text ?? "")
+        editableBike = bikeManager.updateBikeProperty(bike: editableBike, forIndex: selectedCellIndex, byValue: textField.text ?? "")
     }
     
 }
@@ -136,10 +141,7 @@ extension BikeEditorViewController: UICollectionViewDataSource, UICollectionView
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfCellsInColumn: Int = 1
-        let cellHeight = (collectionView.bounds.height / CGFloat(numberOfCellsInColumn))
-        let cellWidth = 4 * cellHeight / 3
-        return CGSize(width: cellWidth, height: cellHeight)
+        return calculateGalleryCellSize(galleryView: collectionView, occupiedFractionOfGalleryHeight: 1.0, cellWidthMultiplier: (4/3))
     }
     
 }

@@ -13,6 +13,8 @@ class BrandEditorViewController: UITableViewController {
     private let brandManager = BrandManager()
     
     var editableBrand = Brand()
+    
+    private var selectedCellIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +53,7 @@ class BrandEditorViewController: UITableViewController {
             let propertyName = editableBrand.propertyLabels[indexPath.row - 1]
             let propertyLabel = editableBrand.propertyValues[indexPath.row - 1]
             cell.loadView(propertyName, propertyLabel)
-            
             cell.propertyValueTextField.delegate = self
-            cell.propertyValueTextField.tag = (indexPath.row - 1)
             return cell
         }
     }
@@ -81,13 +81,20 @@ class BrandEditorViewController: UITableViewController {
 // MARK: - UITextField Delegate
 
 extension BrandEditorViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let tfContentView = textField.superview,
+              let tfCell = tfContentView.superview as? EditorPropertyCell,
+              let cellIndex = tableView.indexPath(for: tfCell) else { return }
+        selectedCellIndex = (cellIndex.row - 1)
+    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        editableBrand = brandManager.updateBrandProperty(brand: editableBrand, forIndex: textField.tag, byValue: textField.text ?? "")
+        editableBrand = brandManager.updateBrandProperty(brand: editableBrand, forIndex: selectedCellIndex, byValue: textField.text ?? "")
     }
 
 }
