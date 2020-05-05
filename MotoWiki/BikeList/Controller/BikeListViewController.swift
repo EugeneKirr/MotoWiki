@@ -85,7 +85,7 @@ class BikeListViewController: UITableViewController {
             }
         }
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
-            self.showDeleteAlert(indexPath) { [weak self] (_) in
+            self.showDeleteAlert() { [weak self] (_) in
                 guard let self = self else { return }
                 let deletedBike = self.currentBikeList[indexPath.row]
                 self.bikeManager.performDBActionWith(deletedBike, action: .deleteFromDB)

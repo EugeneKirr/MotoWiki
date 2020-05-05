@@ -91,7 +91,7 @@ class BrandListViewController: UITableViewController {
             }
         }
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
-            self.showDeleteAlert(indexPath) { [weak self] (_) in
+            self.showDeleteAlert() { [weak self] (_) in
                 guard let self = self else { return }
                 let deletedBrand = self.currentBrandList[indexPath.row]
                 self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)

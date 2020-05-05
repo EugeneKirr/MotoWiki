@@ -81,5 +81,17 @@ extension UIViewController {
         present(ac, animated: true, completion: nil)
     }
     
+}
+
+extension UIViewController {
+    
+    func showDeleteAlert(confirmCompletion: ((UIAlertAction) -> Void)? ) {
+        let ac = UIAlertController(title: "Warning", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .destructive, handler: confirmCompletion)
+        let no = UIAlertAction(title: "No", style: .default, handler: nil)
+        ac.addAction(yes)
+        ac.addAction(no)
+        present(ac, animated: true)
+    }
     
 }

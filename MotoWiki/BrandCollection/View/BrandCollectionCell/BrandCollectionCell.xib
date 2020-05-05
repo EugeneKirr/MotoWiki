@@ -19,22 +19,54 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultBrand" translatesAutoresizingMaskIntoConstraints="NO" id="3zj-IX-0HD">
                         <rect key="frame" x="16" y="16" width="96" height="96"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXU-yX-XrI">
+                        <rect key="frame" x="0.0" y="0.5" width="45" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="vXU-yX-XrI" secondAttribute="height" multiplier="1:1" id="RSU-Db-f97"/>
+                        </constraints>
+                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" backgroundImage="xmark.circle.fill" catalog="system"/>
+                        <connections>
+                            <action selector="tapDeleteButton:" destination="MgA-jd-fst" eventType="touchUpInside" id="cWj-2Y-Q8w"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sN8-q3-FFe">
+                        <rect key="frame" x="83" y="83.5" width="45" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="sN8-q3-FFe" secondAttribute="height" multiplier="1:1" id="V4n-bK-xUQ"/>
+                        </constraints>
+                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" backgroundImage="pencil.circle.fill" catalog="system"/>
+                        <connections>
+                            <action selector="tapEditButton:" destination="MgA-jd-fst" eventType="touchUpInside" id="bvp-J7-6WH"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="3zj-IX-0HD" secondAttribute="bottom" constant="16" id="52o-Ic-Fha"/>
+                    <constraint firstItem="vXU-yX-XrI" firstAttribute="leading" secondItem="drg-w2-lmx" secondAttribute="leading" id="C4A-Ib-ZgF"/>
                     <constraint firstItem="3zj-IX-0HD" firstAttribute="top" secondItem="drg-w2-lmx" secondAttribute="top" constant="16" id="WES-Nm-H0j"/>
+                    <constraint firstItem="vXU-yX-XrI" firstAttribute="width" secondItem="drg-w2-lmx" secondAttribute="width" multiplier="0.35" id="Zdc-ur-wWv"/>
+                    <constraint firstItem="sN8-q3-FFe" firstAttribute="width" secondItem="drg-w2-lmx" secondAttribute="width" multiplier="0.35" id="e7g-QW-XkQ"/>
+                    <constraint firstAttribute="trailing" secondItem="sN8-q3-FFe" secondAttribute="trailing" id="g4o-2e-vmr"/>
                     <constraint firstItem="3zj-IX-0HD" firstAttribute="leading" secondItem="drg-w2-lmx" secondAttribute="leading" constant="16" id="rFj-hm-pfW"/>
+                    <constraint firstItem="vXU-yX-XrI" firstAttribute="top" secondItem="drg-w2-lmx" secondAttribute="top" id="sjH-CN-RbE"/>
+                    <constraint firstAttribute="bottom" secondItem="sN8-q3-FFe" secondAttribute="bottom" id="ucz-S2-v32"/>
                     <constraint firstAttribute="trailing" secondItem="3zj-IX-0HD" secondAttribute="trailing" constant="16" id="yqY-54-tZM"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="128" height="128"/>
             <connections>
                 <outlet property="brandImageView" destination="3zj-IX-0HD" id="IX1-Jz-ZbD"/>
+                <outlet property="deleteButton" destination="vXU-yX-XrI" id="Lwo-P5-wDt"/>
+                <outlet property="editButton" destination="sN8-q3-FFe" id="9aP-Kx-cSc"/>
             </connections>
             <point key="canvasLocation" x="56.25" y="-96.25"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="DefaultBrand" width="512" height="512"/>
+        <image name="pencil.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="xmark.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>

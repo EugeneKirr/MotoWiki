@@ -63,6 +63,7 @@ class BrandCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectViews.brandCollectionCell.cellIdentifier, for: indexPath) as? BrandCollectionCell else { return UICollectionViewCell() }
+        cell.delegate = self
         cell.loadView(brand: currentBrandList[indexPath.row])
         return cell
     }
@@ -70,9 +71,15 @@ class BrandCollectionViewController: UICollectionViewController {
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        initializeAndPush(viewController: .bikeListVC) { [weak self] (vc) in
-            guard let self = self, let bikeListVC = vc as? BikeListViewController else { return }
-            bikeListVC.brandOfInterest = self.currentBrandList[indexPath.row]
+        guard let cell = collectionView.cellForItem(at: indexPath) as? BrandCollectionCell else { return }
+        switch cell.isInEditMode {
+        case true:
+            cell.setEditMode(false)
+        case false:
+            initializeAndPush(viewController: .bikeListVC) { [weak self] (vc) in
+                guard let self = self, let bikeListVC = vc as? BikeListViewController else { return }
+                bikeListVC.brandOfInterest = self.currentBrandList[indexPath.row]
+            }
         }
     }
     
@@ -87,5 +94,29 @@ extension BrandCollectionViewController: UICollectionViewDelegateFlowLayout {
         let cellSize = (collectionView.bounds.width / CGFloat(numberOfCellsInRow))
         return CGSize(width: cellSize, height: cellSize)
     }
+    
+}
+
+// MARK: - Long Press Actions
+
+extension BrandCollectionViewController: BrandCellButtonActionsDelegate {
+    
+    func deleteButtonAction(_ cell: BrandCollectionCell) {
+        showDeleteAlert() { [weak self] (_) in
+            guard let self = self, let indexPath = self.collectionView.indexPath(for: cell) else { return }
+            let deletedBrand = self.currentBrandList[indexPath.row]
+            self.brandManager.performDBActionWith(deletedBrand, action: .deleteFromDB)
+            self.collectionView.deleteItems(at: [indexPath])
+        }
+    }
+    
+    func editButtonAction(_ cell: BrandCollectionCell) {
+        initializeAndPush(viewController: .brandEditorVC) { [weak self] (vc) in
+            guard let self = self, let brandEditorVC = vc as? BrandEditorViewController,
+                  let index = self.collectionView.indexPath(for: cell)?.row else { return }
+            brandEditorVC.editableBrand = self.currentBrandList[index]
+        }
+    }
+    
     
 }
